@@ -1,0 +1,2 @@
+The Chiromo Campus Map Navigation System is an interactive web application designed to help students, especially first-years, navigate the University of Nairobi's Chiromo Campus. The system provides a user-friendly map interface that guides students to specific rooms, lecture halls, and key locations within the campus. The app functions similarly to navigation systems like Uber but is tailored for on-campus movement.
+This project is currently under construction.
