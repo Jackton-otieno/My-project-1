@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive map of University of Nairobi Chiromo Campus">
+    <meta name="theme-color" content="#8C1515">
+    <title>UoN Chiromo Campus Map</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Search functionality -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-content">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-text" style="padding-left: 20px;">
+                    <h1>Chiromo Campus Map</h1>
+                </div>
+
+                <!-- Map View Buttons -->
+                <div class="view-buttons">
+                    <button class="view-button active" data-view="campus">
+                        <i class="fas fa-map"></i>
+                        <span>Campus Map</span>
+                    </button>
+                    <button class="view-button" data-view="satellite">
+                        <i class="fas fa-satellite"></i>
+                        <span>Satellite</span>
+                    </button>
+                </div>
+
+                <div class="header-actions">
+                    <button class="action-button" id="printBtn">
+                        <i class="fas fa-print"></i>
+                    </button>
+                    <button class="action-button" id="shareBtn">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <button class="action-button" id="helpBtn">
+                        <i class="fas fa-question"></i>
+                    </button>
+                </div>
+                
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <div class="sidebar active">
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="Search locations...">
+                <button class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div id="search-results" class="search-results"></div>
+            </div>
+
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div style="background-color: skyblue; padding: 10px; text-align: center;">
+                        <img src="Uon image.png" alt="University of Nairobi Logo" style="width: 100px; height: auto; display: block; margin: 0 auto;">
+                        <h2 style="margin: 10px 0 0 0;">University of Nairobi</h2>
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div class="sidebar-categories">
+                <div class="category-group">
+                    <h2 onclick="toggleDropdown('academic-dropdown')">Academic <span class="dropdown-icon">▼</span></h2>
+                    <div id="academic-dropdown" class="dropdown-content">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="departments" data-layer="departments">
+                            <label for="departments">Departments</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="lecture-halls" data-layer="lecture-halls">
+                            <label for="lecture-halls">Lecture Halls</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="labs" data-layer="labs">
+                            <label for="labs">Laboratories</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="library" data-layer="library">
+                            <label for="library">Library</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-group">
+                    <h2 onclick="toggleDropdown('administration-dropdown')">Administration <span class="dropdown-icon">▼</span></h2>
+                    <div id="administration-dropdown" class="dropdown-content">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="offices" data-layer="offices">
+                            <label for="offices">Main Offices</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-group">
+                    <h2 onclick="toggleDropdown('student-life-dropdown')">Student Life <span class="dropdown-icon">▼</span></h2>
+                    <div id="student-life-dropdown" class="dropdown-content">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="residences" data-layer="residences">
+                            <label for="residences">Student Residences</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="dining" data-layer="dining">
+                            <label for="dining">Eateries</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="shops" data-layer="shops">
+                            <label for="shops">Shops & Services</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-group">
+                    <h2 onclick="toggleDropdown('transportation-dropdown')">Transportation <span class="dropdown-icon">▼</span></h2>
+                    <div id="transportation-dropdown" class="dropdown-content">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="parking" data-layer="parking">
+                            <label for="parking">Parking Areas</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="transport" data-layer="transport">
+                            <label for="transport">Bus Stops</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="route-direction">
+                <h2>Route Directions</h2>
+                <form id="route-form">
+                    <div class="form-group">
+                        <label for="from-location">From:</label>
+                        <input type="text" id="from-location" placeholder="Enter starting point">
+                    </div>
+                    <div class="form-group">
+                        <label for="to-location">To:</label>
+                        <input type="text" id="to-location" placeholder="Enter destination">
+                    </div>
+                    <button type="submit" class="route-button">Get Directions</button>
+                </form>
+            </div>
+
+            
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div id="map"></div>
+            <div class="map-controls">
+                <button class="map-control-button" id="resetMapBtn" style="background-color: skyblue;">
+                    <i class="fas fa-home"></i>
+                </button>
+                <button class="map-control-button" id="printMapBtn" style="background-color: skyblue;">
+                    <i class="fas fa-print"></i>
+                </button>
+                <button class="map-control-button" id="emailMapBtn" style="background-color: skyblue;">
+                    <i class="fas fa-envelope"></i>
+                </button>
+                <button class="map-control-button" id="shareMapBtn" style="background-color: skyblue;">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+                <button class="map-control-button" id="fullscreenMapBtn">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="map-control-button" id="zoomInBtn">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="map-control-button" id="zoomOutBtn">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script type="module" src="map.js"></script>
+
+    <script>
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        if (dropdown.style.display === "none" || dropdown.style.display === "") {
+            dropdown.style.display = "block";
+        } else {
+            dropdown.style.display = "none";
+        }
+    }
+
+    document.getElementById('menuToggle').addEventListener('click', () => {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('active');
+        map.invalidateSize();
+    });
+    </script>
+
+    <style>
+    .map-controls {
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .map-control-button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .map-control-button:hover {
+        background-color: #d3d3d3;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        bottom: 0;
+        width: var(--sidebar-width);
+        background-color: lightgrey;
+        box-shadow: var(--uon-shadow);
+        padding: 20px;
+        overflow-y: auto;
+        z-index: 999;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        transition: margin-left 0.3s ease;
+        width: 100%;
+    }
+
+    .sidebar.active + .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+    }
+    </style>
+</body>
+</html>
