@@ -2451,7 +2451,13 @@ function startGPSTracking() {
     console.log('Starting GPS tracking with high accuracy settings...');
     if (!isTracking) {
         if (navigator.geolocation) {
+            console.log('Geolocation API is available');
             const gpsButton = document.getElementById('gpsTrackBtn');
+            if (!gpsButton) {
+                console.error('GPS button not found in DOM');
+                return;
+            }
+            console.log('GPS button found, adding loading state');
             gpsButton.classList.add('loading');
             gpsButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
             gpsButton.title = 'Getting high accuracy location...';
@@ -2573,23 +2579,48 @@ function handleGPSError(error) {
 
 // Function to stop GPS tracking
 function stopGPSTracking() {
+    console.log('Stopping GPS tracking...');
     if (isTracking && watchId) {
         navigator.geolocation.clearWatch(watchId);
         watchId = null;
         isTracking = false;
-        document.getElementById('gpsTrackBtn').classList.remove('active');
         
-        // Optionally remove the user marker
+        // Clear position history
+        positionHistory = [];
+        
+        // Clear any existing GPS status messages
+        const existingStatus = document.querySelector('.gps-status');
+        if (existingStatus) {
+            existingStatus.remove();
+        }
+        
+        // Clear any accuracy status
+        const accuracyStatus = document.querySelector('.accuracy-status');
+        if (accuracyStatus) {
+            accuracyStatus.remove();
+        }
+        
+        // Reset GPS button state
+        const gpsButton = document.getElementById('gpsTrackBtn');
+        gpsButton.classList.remove('active', 'loading', 'warning', 'caution', 'error');
+        gpsButton.innerHTML = '<i class="fas fa-location-arrow"></i>';
+        gpsButton.title = 'Start GPS Tracking';
+        
+        // Remove the user marker
         if (userMarker) {
             map.removeLayer(userMarker);
             userMarker = null;
         }
+        
+        // Show status message
+        showGPSStatus('GPS tracking stopped', 'info');
     }
 }
 
 // Add event listener for GPS tracking button with logging
 document.getElementById('gpsTrackBtn').addEventListener('click', () => {
     console.log('GPS button clicked, current tracking state:', isTracking);
+    
     if (!isTracking) {
         startGPSTracking();
     } else {
