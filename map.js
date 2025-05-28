@@ -152,28 +152,58 @@ if (L.Browser.mobile) {
     locateButton.addTo(map);
 }
 
-// Base layers with default OpenStreetMap style
-const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 21
-});
+// Define base layers
+const baseLayers = {
+    campus: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 19
+    }),
+    satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: '© Esri',
+        maxZoom: 19
+    })
+};
 
-const satelliteLayer = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-    attribution: '© Google',
-    maxZoom: 21,
-    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-});
+// Add default campus layer
+baseLayers.campus.addTo(map);
 
-// Add default layer and ensure it's loaded
-osmLayer.addTo(map);
+// Handle view button clicks
+document.addEventListener('DOMContentLoaded', () => {
+    const viewButtons = document.querySelectorAll('.view-button');
+    
+    viewButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const view = button.dataset.view;
+            
+            // Update active state of buttons
+            viewButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Switch map layer
+            if (view === 'campus') {
+                baseLayers.satellite.remove();
+                baseLayers.campus.addTo(map);
+            } else if (view === 'satellite') {
+                baseLayers.campus.remove();
+                baseLayers.satellite.addTo(map);
+            }
+            
+            // Ensure map is properly updated
+            map.invalidateSize();
+            
+            // Log the view change
+            console.log(`Switched to ${view} view`);
+        });
+    });
+});
 
 // Remove loading indicator when base layer loads
-osmLayer.on('load', () => {
+baseLayers.campus.on('load', () => {
     loadingIndicator.remove();
 });
 
 // Error handling for tile loading
-osmLayer.on('tileerror', (error) => {
+baseLayers.campus.on('tileerror', (error) => {
     console.error('Tile loading error:', error);
 });
 
@@ -2075,11 +2105,11 @@ viewButtons.forEach(button => {
         
         const view = button.dataset.view;
         if (view === 'campus') {
-            map.addLayer(osmLayer);
-            map.removeLayer(satelliteLayer);
+            baseLayers.satellite.remove();
+            baseLayers.campus.addTo(map);
         } else {
-            map.addLayer(satelliteLayer);
-            map.removeLayer(osmLayer);
+            baseLayers.campus.remove();
+            baseLayers.satellite.addTo(map);
         }
     });
 });

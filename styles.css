@@ -766,9 +766,9 @@ body {
 /* Safe area insets for modern mobile devices */
 @supports (padding: max(0px)) {
     .main-header {
-        padding-left: max(10px, env(safe-area-inset-left));
-        padding-right: max(10px, env(safe-area-inset-right));
-        padding-top: max(10px, env(safe-area-inset-top));
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+        padding-top: max(0px, env(safe-area-inset-top));
     }
 
     .map-controls {
@@ -839,7 +839,7 @@ body {
     left: 0;
     right: 0;
     height: 60px;
-    background: #00A0DC; /* UoN sky blue */
+    background: #00A0DC;
     box-shadow: var(--uon-shadow);
     z-index: 1000;
     padding: 0 20px;
@@ -853,51 +853,161 @@ body {
     height: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    gap: 15px;
 }
 
-.header-logo-container {
+.menu-toggle {
     display: flex;
     align-items: center;
-    height: 100%;
-    padding: 10px 0;
-}
-
-.header-logo {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-    margin-right: 20px;
-}
-
-.header-text {
-    flex-grow: 1;
-    text-align: left;
-}
-
-.header-text h1 {
-    color: white;
-    font-size: 1.2em;
-    margin: 0;
-}
-
-.header-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.action-button {
+    justify-content: center;
     background: none;
     border: none;
     color: white;
     padding: 8px;
     cursor: pointer;
     border-radius: 4px;
-    transition: all 0.2s;
+    transition: background-color 0.2s;
+    min-width: 40px;
+    height: 40px;
 }
 
-.action-button:hover {
+.menu-toggle:hover {
     background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-toggle i {
+    font-size: 20px;
+}
+
+.header-text {
+    flex: 1;
+    text-align: left;
+    min-width: 0; /* Allows text to shrink if needed */
+}
+
+.header-text h1 {
     color: white;
+    font-size: 1.2em;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* View Buttons */
+.view-buttons {
+    display: flex;
+    gap: 12px;
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.view-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95em;
+    font-weight: 500;
+    min-width: 120px;
+    white-space: nowrap;
+}
+
+.view-button.active {
+    background: white;
+    color: #00A0DC;
+    border-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.view-button:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.view-button i {
+    font-size: 1.1em;
+}
+
+/* Mobile Responsiveness for Header */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 0 10px;
+        height: auto;
+        min-height: 60px;
+    }
+
+    .header-content {
+        padding: 10px 0;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .header-text {
+        order: 2;
+        flex: 1 1 100%;
+        text-align: center;
+    }
+
+    .header-text h1 {
+        font-size: 1.1em;
+    }
+
+    .menu-toggle {
+        order: 1;
+    }
+
+    .view-buttons {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+        background: transparent;
+        padding: 0;
+    }
+
+    .view-button {
+        padding: 8px 12px;
+        font-size: 0.9em;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-text h1 {
+        font-size: 1em;
+    }
+
+    .view-button span {
+        display: none;
+    }
+
+    .view-button {
+        padding: 8px;
+    }
+
+    .view-button i {
+        margin: 0;
+        font-size: 1.2em;
+    }
+}
+
+/* Safe area insets for modern mobile devices */
+@supports (padding: max(0px)) {
+    .main-header {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+        padding-top: max(0px, env(safe-area-inset-top));
+    }
 }
 
 /* Category Groups */
