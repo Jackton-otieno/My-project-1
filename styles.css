@@ -521,47 +521,262 @@ body {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+    :root {
+        --sidebar-width: 85vw;
+    }
+
     .sidebar {
+        width: var(--sidebar-width);
+        top: 0;
+        height: 100%;
+        padding-top: 60px;
         transform: translateX(-100%);
-        transition: transform 0.3s ease;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
     }
 
     .sidebar.active {
         transform: translateX(0);
     }
 
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    .main-header {
+        padding: 10px;
+        height: auto;
+        min-height: 60px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1001;
+    }
+
+    .header-content {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 5px 0;
+    }
+
+    .header-text {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .header-text h1 {
+        font-size: 1.1rem;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.3;
+    }
+
+    .map-controls {
+        top: 70px;
+        right: 10px;
+        gap: 8px;
+    }
+
+    .map-control-button {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .map-control-button i {
+        font-size: 18px;
+    }
+
+    .search-input {
+        font-size: 16px;
+        padding: 12px 40px 12px 15px;
+        height: 48px;
+    }
+
+    .search-button {
+        padding: 12px;
+        right: 8px;
+    }
+
+    .category-group h2 {
+        padding: 12px 15px;
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+
+    .checkbox-item {
+        padding: 12px 15px;
+        margin-bottom: 4px;
+    }
+
+    .checkbox-item label {
+        font-size: 0.95rem;
+        padding-left: 36px;
+    }
+
+    .checkbox-item label::before {
+        width: 24px;
+        height: 24px;
+    }
+
+    .route-direction {
+        padding: 15px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 12px;
+        font-size: 16px;
+        height: 48px;
+    }
+
+    .route-button,
+    .clear-route-button {
+        padding: 14px;
+        font-size: 1rem;
+        height: 48px;
+        margin-top: 10px;
+    }
+
+    /* Improve map controls for touch */
+    .leaflet-control-zoom a {
+        width: 44px;
+        height: 44px;
+        line-height: 44px;
+        font-size: 22px;
+    }
+
+    .leaflet-control-layers {
+        padding: 12px;
+    }
+
+    .leaflet-control-layers-toggle {
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Make popups more mobile-friendly */
+    .leaflet-popup-content-wrapper {
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .leaflet-popup-content {
+        margin: 12px;
+        font-size: 15px;
+    }
+
+    .building-popup img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    /* Improve touch targets for location markers */
+    .leaflet-marker-icon {
+        width: 36px !important;
+        height: 36px !important;
+        margin-left: -18px !important;
+        margin-top: -18px !important;
+    }
+
+    /* GPS Status Messages */
+    .gps-status {
+        top: 70px;
+        padding: 15px 20px;
+        font-size: 15px;
+        border-radius: 12px;
+        max-width: 95%;
+    }
+
+    /* Menu Toggle Button */
     .menu-toggle {
-        display: block;
         position: fixed;
         top: 70px;
         left: 10px;
-        z-index: 1000;
-        background: var(--uon-white);
-        border: none;
+        z-index: 1002;
+        width: 44px;
+        height: 44px;
         padding: 10px;
-        border-radius: 4px;
-        box-shadow: var(--uon-shadow);
-        cursor: pointer;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
     .menu-toggle i {
-        color: var(--uon-blue);
+        font-size: 20px;
     }
 }
 
-/* Print Styles */
-@media print {
-    .sidebar,
-    .menu-toggle {
-        display: none;
+/* Additional styles for very small screens */
+@media (max-width: 480px) {
+    :root {
+        --sidebar-width: 100vw;
     }
 
-    #map {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+    .header-text h1 {
+        font-size: 1rem;
+    }
+
+    .map-controls {
+        top: 80px;
+    }
+
+    .map-control-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .map-control-button i {
+        font-size: 16px;
+    }
+
+    .sidebar {
+        padding: 70px 15px 15px 15px;
+    }
+
+    .search-input {
+        height: 44px;
+        font-size: 15px;
+    }
+
+    .category-group h2 {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+
+    .checkbox-item {
+        padding: 10px 12px;
+    }
+
+    .checkbox-item label {
+        font-size: 0.9rem;
+    }
+
+    .gps-status {
+        top: 80px;
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Safe area insets for modern mobile devices */
+@supports (padding: max(0px)) {
+    .main-header {
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+        padding-top: max(10px, env(safe-area-inset-top));
+    }
+
+    .map-controls {
+        right: max(10px, env(safe-area-inset-right));
+    }
+
+    .menu-toggle {
+        left: max(10px, env(safe-area-inset-left));
     }
 }
 

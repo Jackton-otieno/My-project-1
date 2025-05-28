@@ -3,11 +3,35 @@ import { locations } from './locations.js';
 // Initialize map centered on Chiromo Campus
 const map = L.map('map', {
     center: [-1.272815, 36.806817], // Chiromo Campus coordinates
-    zoom: 17, // Adjusted zoom level to show the campus area
+    zoom: 17,
     zoomControl: false,
     minZoom: 14,
     maxZoom: 21,
-    preferCanvas: true
+    preferCanvas: true,
+    tap: true, // Enable tap support
+    touchZoom: true, // Enable touch zoom
+    scrollWheelZoom: true, // Enable scroll wheel zoom
+    doubleClickZoom: true, // Enable double click zoom
+    boxZoom: true, // Enable box zoom
+    keyboard: true, // Enable keyboard navigation
+    dragging: true, // Enable dragging
+    attributionControl: true, // Show attribution
+    fadeAnimation: true, // Enable fade animation
+    markerZoomAnimation: true, // Enable marker zoom animation
+    transform3DLimit: 8388608, // Higher limit for 3D transforms
+    maxBoundsViscosity: 1.0, // Prevent dragging outside bounds
+    worldCopyJump: false, // Disable world copy jump
+    bounceAtZoomLimits: true, // Bounce at zoom limits
+    wheelDebounceTime: 40, // Debounce wheel events
+    wheelPxPerZoomLevel: 60, // Pixels per zoom level
+    zoomSnap: 0.5, // Snap to zoom levels
+    zoomDelta: 0.5, // Zoom delta
+    trackResize: true, // Track resize
+    closePopupOnClick: true, // Close popup on click
+    updateWhenIdle: true, // Update when idle
+    updateWhenZooming: true, // Update when zooming
+    keepInView: true, // Keep in view
+    renderer: L.canvas({ padding: 0.5 }) // Use canvas renderer
 });
 
 // Add loading indicator
@@ -15,6 +39,118 @@ const loadingIndicator = document.createElement('div');
 loadingIndicator.className = 'loading-indicator';
 loadingIndicator.textContent = 'Loading map...';
 document.getElementById('map').appendChild(loadingIndicator);
+
+// Handle mobile device orientation
+window.addEventListener('orientationchange', () => {
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 100);
+});
+
+// Handle resize events
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        map.invalidateSize();
+    }, 100);
+});
+
+// Add touch event handling for mobile
+map.on('touchstart', (e) => {
+    if (e.touches.length === 1) {
+        map.dragging.enable();
+    }
+});
+
+map.on('touchend', () => {
+    map.dragging.disable();
+});
+
+// Improve popup handling for mobile
+map.on('popupopen', (e) => {
+    const popup = e.popup;
+    const popupContent = popup.getContent();
+    
+    // Add close button to popup
+    if (typeof popupContent === 'string') {
+        const closeButton = document.createElement('button');
+        closeButton.className = 'popup-close-button';
+        closeButton.innerHTML = '×';
+        closeButton.style.cssText = `
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            color: #666;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        `;
+        
+        closeButton.addEventListener('click', () => {
+            map.closePopup(popup);
+        });
+        
+        const wrapper = document.createElement('div');
+        wrapper.style.position = 'relative';
+        wrapper.innerHTML = popupContent;
+        wrapper.appendChild(closeButton);
+        popup.setContent(wrapper);
+    }
+});
+
+// Add mobile-specific map controls
+if (L.Browser.mobile) {
+    // Add zoom control with larger buttons for mobile
+    L.control.zoom({
+        position: 'bottomright',
+        zoomInText: '+',
+        zoomOutText: '−'
+    }).addTo(map);
+    
+    // Add a "locate me" button for mobile
+    const locateButton = L.control({
+        position: 'bottomright'
+    });
+    
+    locateButton.onAdd = () => {
+        const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+        div.innerHTML = `
+            <a href="#" title="Locate me" role="button" aria-label="Locate me" style="
+                width: 44px;
+                height: 44px;
+                line-height: 44px;
+                font-size: 22px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: white;
+                border-radius: 4px;
+                box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+            ">
+                <i class="fas fa-location-arrow"></i>
+            </a>
+        `;
+        
+        div.onclick = (e) => {
+            e.preventDefault();
+            startGPSTracking();
+        };
+        
+        return div;
+    };
+    
+    locateButton.addTo(map);
+}
 
 // Base layers with default OpenStreetMap style
 const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
