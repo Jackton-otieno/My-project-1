@@ -241,10 +241,49 @@
         }
     }
 
-    document.getElementById('menuToggle').addEventListener('click', () => {
+    // Enhanced menu toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.querySelector('.sidebar');
-        sidebar.classList.toggle('active');
-        map.invalidateSize();
+        const mainContent = document.querySelector('.main-content');
+        const map = document.getElementById('map');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('active');
+            // Force map resize after sidebar transition
+            setTimeout(() => {
+                if (map && map._leaflet_id) {
+                    map.invalidateSize();
+                }
+            }, 300);
+        }
+
+        menuToggle.addEventListener('click', toggleSidebar);
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth <= 768) {
+                const isClickInsideSidebar = sidebar.contains(event.target);
+                const isClickOnMenuToggle = menuToggle.contains(event.target);
+                
+                if (!isClickInsideSidebar && !isClickOnMenuToggle && sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                    if (map && map._leaflet_id) {
+                        map.invalidateSize();
+                    }
+                }
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('active');
+            }
+            if (map && map._leaflet_id) {
+                map.invalidateSize();
+            }
+        });
     });
     </script>
 
