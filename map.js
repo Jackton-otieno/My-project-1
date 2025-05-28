@@ -52,7 +52,9 @@ const layerGroups = {
     parking: L.layerGroup(),
     shops: L.layerGroup(),
     library: L.layerGroup(),
-    transport: L.layerGroup()
+    transport: L.layerGroup(),
+    'chill-spots': L.layerGroup(),
+    emergency: L.layerGroup()
 };
 
 // Icon configuration for different categories
@@ -66,7 +68,9 @@ const iconConfig = {
     parking: { icon: 'parking', color: '#95A5A6' },
     shops: { icon: 'store', color: '#E67E22' },
     library: { icon: 'book', color: '#8E44AD' },
-    transport: { icon: 'bus', color: '#3498DB' }
+    transport: { icon: 'bus', color: '#3498DB' },
+    'chill-spots': { icon: 'tree', color: '#27AE60' },
+    emergency: { icon: 'exclamation-triangle', color: '#E74C3C' }
 };
 
 // Create marker icon
@@ -87,7 +91,7 @@ function createIcon(category) {
 }
 
 // Add detailed information for buildings
-const buildingInfo = {
+export const buildingInfo = {
     // Academic Departments
     'school-of-biological-sciences': {
         name: 'School of Biological Sciences',
@@ -95,7 +99,37 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4441\nEmail: biological.sciences@uon.ac.ke',
         description: 'Main building for biological sciences studies',
         rooms: 'Room Numbers: 101-305',
-        image: 'https://example.com/biological-sciences.jpg'
+        image: 'images/image 21.jpg',
+        floors: [
+            {
+                name: 'Ground Floor',
+                image: 'images/first floor .jpeg',
+                rooms: [
+                    { number: '101', x: 100, y: 200, description: 'Biology Lab 1 - General Biology Laboratory' },
+                    { number: '102', x: 200, y: 200, description: 'Biology Lab 2 - Microbiology Laboratory' },
+                    { number: '103', x: 300, y: 200, description: 'Research Lab - Advanced Research Facility' },
+                    { number: '104', x: 400, y: 200, description: 'Staff Room - Faculty Office' },
+                    { number: '105', x: 500, y: 200, description: 'Storage - Equipment and Supplies' },
+                    { number: '106', x: 100, y: 300, description: 'Lecture Room 1 - Capacity: 50 students' },
+                    { number: '107', x: 200, y: 300, description: 'Lecture Room 2 - Capacity: 50 students' },
+                    { number: '108', x: 300, y: 300, description: 'Lecture Room 3 - Capacity: 50 students' },
+                    { number: '109', x: 400, y: 300, description: 'Conference Room - Meeting Space' },
+                    { number: '110', x: 500, y: 300, description: 'Admin Office - Department Administration' },
+                    { number: '111', x: 600, y: 300, description: 'Equipment Room - Specialized Equipment Storage' }
+                ]
+            },
+            {
+                name: 'First Floor',
+                image: 'images/biological-sciences-first-floor.jpg',
+                rooms: [
+                    { number: '201', x: 100, y: 200, description: 'Research Lab 1 - Molecular Biology' },
+                    { number: '202', x: 200, y: 200, description: 'Research Lab 2 - Genetics' },
+                    { number: '203', x: 300, y: 200, description: 'Graduate Studies - Research Office' },
+                    { number: '204', x: 400, y: 200, description: 'Faculty Office - Professors Office' },
+                    { number: '205', x: 500, y: 200, description: 'Meeting Room - Small Conference Space' }
+                ]
+            }
+        ]
     },
     'centre-of-biotechnology-bioinformatics': {
         name: 'Centre of Biotechnology & Bioinformatics',
@@ -103,7 +137,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4442\nEmail: biotechnology@uon.ac.ke',
         description: 'Research center for biotechnology and bioinformatics',
         rooms: 'Room Numbers: 201-405',
-        image: 'https://example.com/biotechnology.jpg'
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
     },
     'meteorology-department': {
         name: 'Meteorology Department',
@@ -111,7 +145,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4443\nEmail: meteorology@uon.ac.ke',
         description: 'Department of Meteorology and Climate Studies',
         rooms: 'Room Numbers: 301-505',
-        image: 'https://example.com/meteorology.jpg'
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
     },
     'department-of-mathematics': {
         name: 'Department of Mathematics',
@@ -119,7 +153,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4444\nEmail: mathematics@uon.ac.ke',
         description: 'Mathematics and Statistics Department',
         rooms: 'Room Numbers: 401-605',
-        image: 'https://example.com/mathematics.jpg'
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
     },
     'physics-department': {
         name: 'Physics Department',
@@ -127,7 +161,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4445\nEmail: physics@uon.ac.ke',
         description: 'The Department of Physics and Space Science is a leading academic institution dedicated to advancing knowledge in physics, astronomy, and space sciences. The department features state-of-the-art research facilities, advanced laboratories, and specialized equipment for both theoretical and experimental physics studies.',
         rooms: 'Room Numbers: 501-705',
-        image: 'https://example.com/physics.jpg'
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
     },
     'department-of-earth-and-climate-sciences': {
         name: 'Department of Earth and Climate Sciences',
@@ -135,15 +169,15 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4446\nEmail: earth.sciences@uon.ac.ke',
         description: 'The Department of Earth and Climate Sciences is a premier academic institution focused on understanding Earth\'s systems and climate dynamics. The department features advanced research facilities, specialized laboratories, and comprehensive equipment for geological and climate studies.',
         rooms: 'Room Numbers: 601-805',
-        image: 'https://example.com/earth-sciences.jpg'
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
     },
     'school-of-physical-sciences': {
         name: 'School Of Physical Sciences',
         department: 'School of Physical Sciences',
-        contact: 'Phone: +254 20 444 4447\nEmail: physical.sciences@uon.ac.ke',
+        contact: 'Phone: +254 20 444 4447 /n Email: physical.sciences@uon.ac.ke',
         description: 'The School of Physical Sciences serves as the central hub for advanced scientific research and education. The facility houses cutting-edge laboratories, research centers, and specialized equipment for comprehensive scientific studies across multiple disciplines.',
         rooms: 'Room Numbers: 701-905',
-        image: 'https://example.com/physical-sciences.jpg'
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
     },
     'uon-chemistry-department': {
         name: 'UoN Chemistry Department',
@@ -151,7 +185,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4448\nEmail: chemistry@uon.ac.ke',
         description: 'The Department of Chemistry is a distinguished academic institution dedicated to advancing chemical sciences. The department features modern research laboratories, specialized equipment, and comprehensive facilities for both theoretical and practical chemistry studies.',
         rooms: 'Room Numbers: 801-1005',
-        image: 'https://example.com/chemistry.jpg'
+        image: 'images/image 36.jpg'
     },
     'department-of-computing-and-informatics': {
         name: 'Department Of Computing And Informatics',
@@ -159,15 +193,23 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4449\nEmail: computing@uon.ac.ke',
         description: 'The School of Computing and Informatics is a leading academic institution focused on advancing technology and information sciences. The facility houses state-of-the-art computer laboratories, research centers, and specialized equipment for comprehensive computing studies.',
         rooms: 'Room Numbers: 901-1105',
-        image: 'https://example.com/computing.jpg'
+        image: 'images/image 9.jpg'
     },
     'department-of-veterinary-anatomy-physiology': {
         name: 'Department of Veterinary Anatomy & Physiology',
         department: 'Department of Veterinary Anatomy & Physiology',
-        contact: 'Phone: +254 20 444 4450\nEmail: veterinary@uon.ac.ke',
-        description: 'The Department of Veterinary Anatomy & Physiology is a specialized academic institution dedicated to advancing veterinary medical sciences. The department features advanced research facilities, specialized laboratories, and comprehensive equipment for veterinary studies and research.',
+        contact: 'Phone: +254 20 444 4450\nEmail: veterinary.anatomy@uon.ac.ke',
+        description: 'The Department of Veterinary Anatomy & Physiology is a premier institution for veterinary medical education and research. The department features specialized laboratories, research facilities, and comprehensive equipment for veterinary studies.',
         rooms: 'Room Numbers: 1001-1205',
-        image: 'https://example.com/veterinary.jpg'
+        image: 'images/image 27.jpg'
+    },
+    'chiromo-campus-gardens': {
+        name: 'Chiromo Campus Gardens',
+        department: 'Student Chill Spots',
+        contact: 'Open 24/7',
+        description: 'The Chiromo Campus Gardens provide a serene and peaceful environment for students to relax, study, and socialize. These beautifully maintained green spaces feature lush lawns, shaded seating areas, and scenic views, making them perfect spots for both individual study sessions and group gatherings.',
+        rooms: 'Outdoor Areas',
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
     },
 
     // Administrative Buildings
@@ -177,7 +219,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4451\nEmail: principal.cbps@uon.ac.ke',
         description: 'Principal\'s office and Registry',
         rooms: 'Room Numbers: 201-305',
-        image: 'https://example.com/principal-office.jpg'
+        image: 'images/image 14.jpg'
     },
     'procurement-offices': {
         name: 'Procurement Offices',
@@ -185,7 +227,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4452\nEmail: procurement@uon.ac.ke',
         description: 'University procurement department',
         rooms: 'Room Numbers: 301-405',
-        image: 'https://example.com/procurement.jpg'
+        image: 'images/image 13.jpg'
     },
     'internal-auditor': {
         name: 'Internal Auditor',
@@ -193,7 +235,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4453\nEmail: internal.audit@uon.ac.ke',
         description: 'Internal audit office',
         rooms: 'Room Numbers: 401-505',
-        image: 'https://example.com/internal-auditor.jpg'
+        image: 'images/image 16.jpg'
     },
     'college-registrar': {
         name: 'College Registrar',
@@ -201,7 +243,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4454\nEmail: registrar@uon.ac.ke',
         description: 'Registrar\'s office',
         rooms: 'Room Numbers: 501-605',
-        image: 'https://example.com/registrar.jpg'
+        image: 'images/image 16.jpg'
     },
 
     // Lecture Halls
@@ -211,7 +253,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4455\nEmail: lecture.halls@uon.ac.ke',
         description: 'SWS & LLT lecture theaters',
         rooms: 'Theater Numbers: 1-4',
-        image: 'https://example.com/lecture-theaters.jpg'
+        image: 'images/image 32.jpg'
     },
     'millennium-hall-1': {
         name: 'Millennium Hall 1',
@@ -219,7 +261,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4456\nEmail: millennium.hall1@uon.ac.ke',
         description: 'Main lecture theater',
         rooms: 'Theater Numbers: 1-2',
-        image: 'https://example.com/millennium-hall-1.jpg'
+        image: 'images/image 5.jpg'
     },
     'millennium-hall-2': {
         name: 'Millennium Hall 2',
@@ -227,7 +269,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4457\nEmail: millennium.hall2@uon.ac.ke',
         description: 'Secondary lecture theater',
         rooms: 'Theater Numbers: 3-4',
-        image: 'https://example.com/millennium-hall-2.jpg'
+        image: 'images/image 8.jpg'
     },
 
     // Student Residences
@@ -237,7 +279,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4457\nEmail: qejani.residences@uon.ac.ke',
         description: 'Qejani Student Residences is a modern accommodation facility designed to provide comfortable and conducive living spaces for students. The facility features a combination of single and shared rooms, each equipped with essential furnishings and study areas. Common amenities include high-speed internet connectivity, 24/7 security surveillance, and dedicated study zones. The residence is strategically located within walking distance to academic buildings and campus facilities.\n\nFacilities:\n- Individual and Shared Accommodation Units\n- High-Speed Internet Access\n- 24/7 Security System\n- Common Study Areas\n- Recreational Spaces\n- Laundry Facilities\n- CCTV Surveillance',
         rooms: 'Total Capacity: 200 Students\nSingle Rooms: 80 Units\nShared Rooms: 120 Units\nCommon Areas: 4\nStudy Rooms: 3',
-        image: 'https://example.com/qejani-residences.jpg'
+        image: 'images\Amity University Campus with Prominent Content.jpeg'
     },
     'qwetu-student-residences': {
         name: 'Qwetu Student Residences',
@@ -245,7 +287,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4458\nEmail: qwetu.residences@uon.ac.ke',
         description: 'Qwetu Student Residences represents premium student housing with contemporary design and comprehensive amenities. The facility offers a mix of studio apartments and shared units, all fully furnished to international standards. Residents benefit from high-speed WiFi connectivity, modern fitness facilities, dedicated study spaces, and recreational areas. The residence features advanced security systems including card access control and comprehensive CCTV surveillance.\n\nFacilities:\n- Premium Studio Apartments\n- Shared Accommodation Units\n- Modern Fitness Center\n- Dedicated Study Areas\n- Recreational Facilities\n- High-Speed WiFi Network\n- Advanced Security Systems',
         rooms: 'Total Capacity: 300 Students\nStudio Apartments: 150 Units\nShared Units: 150 Units\nStudy Rooms: 6\nRecreational Areas: 3',
-        image: 'https://example.com/qwetu-residences.jpg'
+        image: 'http'
     },
     'chiromo-hostel-block-a': {
         name: 'Chiromo Hostel Block A',
@@ -279,7 +321,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4463\nEmail: science.labs@uon.ac.ke',
         description: 'State-of-the-art physics and general science laboratories featuring advanced research equipment and specialized facilities. Includes dedicated areas for mechanics experiments, optical physics research, electronics testing, quantum physics studies, and general physics practical work. Houses modern measurement instruments and data acquisition systems.',
         rooms: 'Lab Numbers: 101-305',
-        image: 'https://example.com/science-labs.jpg'
+        image: 'images/image 1.jpg'
     },
     'human-anatomy-laboratory': {
         name: 'Human Anatomy Laboratory',
@@ -353,7 +395,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4469\nEmail: arziki.restaurant@uon.ac.ke',
         description: 'Full-service restaurant offering a diverse menu of African and international cuisine. Features daily specials, vegetarian options, and catering services.\n\nOpening Hours:\nMonday to Friday: 8:00 AM - 9:00 PM\nSaturday: 9:00 AM - 7:00 PM\nSunday: 10:00 AM - 4:00 PM',
         rooms: 'Seating Capacity: 150\nPrivate Dining Room: 1\nOutdoor Terrace: 1',
-        image: 'https://example.com/arziki-restaurant.jpg'
+        image: 'images/image 25.jpg'
     },
 
     // Library
@@ -363,33 +405,33 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4471\nEmail: library@uon.ac.ke',
         description: 'The main campus library serves as a central hub for academic resources and study spaces. Features include individual study carrels, group study rooms, computer workstations, printing facilities, and extensive collections of scientific journals and academic publications. The library provides access to both physical and digital resources, with specialized sections for different academic disciplines.\n\nOpening Hours:\nMonday to Friday: 8:00 AM - 10:00 PM\nSaturday: 10:00 AM - 3:00 PM\nSunday: Closed',
         rooms: 'Floor Numbers: 1-3\nSeating Capacity: 500\nStudy Rooms: 10\nComputer Labs: 2',
-        image: 'https://example.com/library.jpg'
+        image: 'images/image 26.jpg'
     },
 
     // Parking Areas
-    'main-parking': {
+    'main-parking-lot': {
         name: 'Main Parking Lot',
         department: 'Campus Services',
         contact: 'Phone: +254 20 444 4472\nEmail: parking@uon.ac.ke',
-        description: 'The Main Parking Lot is a comprehensive parking facility designed to accommodate various campus visitors. Features include designated spaces for different vehicle types, security surveillance, and convenient access to major campus buildings.',
-        rooms: 'Capacity: 200 vehicles',
-        image: 'https://example.com/main-parking.jpg'
+        description: 'The Main Parking Lot is a comprehensive parking facility designed to accommodate various campus visitors. Features include designated spaces for different vehicle types, security surveillance, and convenient access to major campus buildings. The facility is well-lit, monitored by CCTV cameras, and has dedicated security personnel for enhanced safety.',
+        rooms: 'Capacity: 200 vehicles\nVisitor Spaces: 50\nStaff Spaces: 100\nStudent Spaces: 50\nHandicap Spaces: 10',
+        image: 'images/image 20.jpg'
     },
-    'staff-parking': {
+    'staff-parking-lot': {
         name: 'Staff Parking Lot',
         department: 'Campus Services',
         contact: 'Phone: +254 20 444 4473\nEmail: staff.parking@uon.ac.ke',
-        description: 'The Staff Parking Lot provides dedicated parking facilities for university staff members. The facility features secure parking spaces, proximity to administrative buildings, and controlled access for authorized personnel.',
-        rooms: 'Capacity: 100 vehicles',
-        image: 'https://example.com/staff-parking.jpg'
+        description: 'The Staff Parking Lot provides dedicated parking facilities for university staff members. The facility features secure parking spaces, proximity to administrative buildings, and controlled access for authorized personnel. Includes 24/7 security surveillance, well-marked parking bays, and convenient access to staff offices.',
+        rooms: 'Capacity: 100 vehicles\nStaff Spaces: 80\nVisitor Spaces: 20\nHandicap Spaces: 5',
+        image: 'images/image 37.jpg'
     },
-    'chemistry-parking': {
+    'chemistry-department-parking': {
         name: 'Chemistry Department Parking',
         department: 'Campus Services',
         contact: 'Phone: +254 20 444 4474\nEmail: chemistry.parking@uon.ac.ke',
-        description: 'The Chemistry Department Parking facility offers dedicated parking spaces for department staff and visitors. The facility provides convenient access to the Chemistry Department and features designated areas for different vehicle types.',
-        rooms: 'Capacity: 50 vehicles',
-        image: 'https://example.com/chemistry-parking.jpg'
+        description: 'The Chemistry Department Parking facility offers dedicated parking spaces for department staff and visitors. The facility provides convenient access to the Chemistry Department and features designated areas for different vehicle types. Includes security surveillance and well-marked parking bays.',
+        rooms: 'Capacity: 50 vehicles\nStaff Spaces: 30\nStudent Spaces: 15\nVisitor Spaces: 5',
+        image: 'images/image 30.jpg'
     },
 
     // Other Facilities
@@ -442,7 +484,7 @@ const buildingInfo = {
         department: 'Campus Services',
         contact: 'Phone: +254 20 444 4477\nEmail: spot.cafe@uon.ac.ke',
         description: 'Popular student hangout serving coffee, snacks, and light meals. Features comfortable seating and study areas.\n\nOpening Hours:\nMonday to Friday: 7:00 AM - 9:00 PM\nSaturday: 8:00 AM - 6:00 PM\nSunday: 9:00 AM - 3:00 PM',
-        rooms: 'Seating Capacity: 100\nStudy Tables: 10\nOutdoor Seating: 1',
+        rooms: 'Seating Capacity: 100/nStudy Tables: 10/nOutdoor Seating: 1',
         image: 'https://example.com/spot-cafe.jpg'
     },
     'spot-pub': {
@@ -477,7 +519,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4481\nEmail: parking@uon.ac.ke',
         description: 'The General Parking Space is a versatile parking facility designed to accommodate various campus visitors and students. Features include designated spaces for different vehicle types, security surveillance, and convenient access to campus facilities.',
         rooms: 'Capacity: 100 vehicles\nVisitor Spaces: 20\nHandicap Spaces: 5',
-        image: 'https://example.com/general-parking.jpg'
+        image: 'images/image 11.jpg'
     },
     'chs-parking': {
         name: 'CHS Parking',
@@ -485,7 +527,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4482\nEmail: chs.parking@uon.ac.ke',
         description: 'The CHS Parking facility provides dedicated parking spaces for College of Health Sciences staff and students. The facility features secure parking areas, proximity to medical facilities, and designated spaces for different vehicle types.',
         rooms: 'Capacity: 50 vehicles\nStaff Spaces: 30\nStudent Spaces: 20',
-        image: 'https://example.com/chs-parking.jpg'
+        image: 'images/image 15.jpg'
     },
     'cbps-parking-lot': {
         name: 'CBPS Parking Lot',
@@ -493,7 +535,7 @@ const buildingInfo = {
         contact: 'Phone: +254 20 444 4483\nEmail: cbps.parking@uon.ac.ke',
         description: 'Parking facility for College of Biological and Physical Sciences staff and students.',
         rooms: 'Capacity: 75 vehicles\nStaff Spaces: 40\nStudent Spaces: 35',
-        image: 'https://example.com/cbps-parking.jpg'
+        image: 'images/image 12.jpg'
     },
 
     // Additional Transport Facilities
@@ -529,6 +571,663 @@ const buildingInfo = {
         rooms: 'Bus Bays: 5\nWaiting Area: 1\nTicket Office: 1',
         image: 'https://example.com/chiromo-bus-station.jpg'
     },
+    'chiromo-campus-jevanjee-gardens': {
+        name: 'Chiromo Campus Jevanjee Gardens',
+        department: 'Campus Recreation',
+        contact: 'Open 24/7',
+        description: 'A peaceful garden area for students to relax and study. The gardens feature well-maintained lawns, comfortable benches, and shaded areas perfect for outdoor studying or relaxation. The serene environment provides an ideal escape from academic stress.',
+        rooms: 'Outdoor Space\nBenches: Multiple\nShaded Areas: Available',
+        image: 'images/image 25.jpg'
+    },
+    'chiromo-campus-gardens-1': {
+        name: 'Chiromo Campus Gardens 1',
+        department: 'Campus Recreation',
+        contact: 'Open 24/7',
+        description: 'Scenic garden area with benches for student relaxation. This beautiful space features landscaped gardens, comfortable seating areas, and peaceful surroundings perfect for studying, socializing, or simply enjoying nature.',
+        rooms: 'Outdoor Space\nBenches: Multiple\nLandscaped Areas: Available',
+        image: 'images/image 40 .jpg'
+    },
+    'chiromo-campus-garden-2': {
+        name: 'Chiromo Campus Garden 2',
+        department: 'Campus Recreation',
+        contact: 'Open 24/7',
+        description: 'Quiet garden space for students to unwind. This tranquil area offers a peaceful retreat with natural surroundings, making it ideal for meditation, quiet study sessions, or small group discussions.',
+        rooms: 'Outdoor Space\nSeating Areas: Multiple\nQuiet Zones: Available',
+        image: 'images/image 50.jpg'
+    },
+    'chiromo-campus-garden-3': {
+        name: 'Chiromo Campus Garden 3',
+        department: 'Campus Recreation',
+        contact: 'Open 24/7',
+        description: 'Beautiful garden area perfect for study breaks. Features well-maintained green spaces, comfortable seating, and a relaxing atmosphere. The garden provides an excellent environment for outdoor activities, casual meetings, or peaceful relaxation.',
+        rooms: 'Outdoor Space\nSeating Areas: Multiple\nRecreational Spaces: Available',
+        image: 'images/image 2.jpg'
+    }
+};
+
+// Add indoor map data for all buildings
+const indoorMaps = {
+    'school-of-biological-sciences': {
+        floors: [
+            {
+                name: 'Ground Floor',
+                rooms: [
+                    { number: '101', x: 100, y: 150, description: 'Biology Lab 1 - General Biology Laboratory' },
+                    { number: '102', x: 200, y: 150, description: 'Biology Lab 2 - Microbiology Laboratory' },
+                    { number: '103', x: 300, y: 150, description: 'Research Lab - Advanced Research Facility' },
+                    { number: '104', x: 400, y: 150, description: 'Staff Room - Faculty Office' },
+                    { number: '105', x: 500, y: 150, description: 'Storage - Equipment and Supplies' },
+                    { number: '113', x: 600, y: 150, description: 'Research Office 1 - Graduate Studies' },
+                    { number: '114', x: 700, y: 150, description: 'Research Office 2 - Postgraduate Studies' },
+                    { number: '106', x: 100, y: 350, description: 'Lecture Room 1 - Capacity: 50 students' },
+                    { number: '107', x: 200, y: 350, description: 'Lecture Room 2 - Capacity: 50 students' },
+                    { number: '108', x: 300, y: 350, description: 'Lecture Room 3 - Capacity: 50 students' },
+                    { number: '109', x: 400, y: 350, description: 'Conference Room - Meeting Space' },
+                    { number: '110', x: 500, y: 350, description: 'Admin Office - Department Administration' },
+                    { number: '111', x: 600, y: 350, description: 'Equipment Room - Specialized Equipment Storage' },
+                    { number: '112', x: 700, y: 350, description: 'Student Lounge - Common Area' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'First Floor' }
+                ]
+            },
+            {
+                name: 'First Floor',
+                rooms: [
+                    { number: '201', x: 100, y: 150, description: 'Research Lab 1 - Molecular Biology' },
+                    { number: '202', x: 200, y: 150, description: 'Research Lab 2 - Genetics' },
+                    { number: '203', x: 300, y: 150, description: 'Graduate Studies - Research Office' },
+                    { number: '204', x: 400, y: 150, description: 'Faculty Office - Professors Office' },
+                    { number: '205', x: 500, y: 150, description: 'Meeting Room - Small Conference Space' },
+                    { number: '213', x: 600, y: 150, description: 'Faculty Lounge - Staff Break Room' },
+                    { number: '214', x: 700, y: 150, description: 'Department Head Office' },
+                    { number: '206', x: 100, y: 350, description: 'Computer Lab 1 - Bioinformatics' },
+                    { number: '207', x: 200, y: 350, description: 'Computer Lab 2 - Data Analysis' },
+                    { number: '208', x: 300, y: 350, description: 'Library - Reference Materials' },
+                    { number: '209', x: 400, y: 350, description: 'Study Room 1 - Group Study Area' },
+                    { number: '210', x: 500, y: 350, description: 'Study Room 2 - Quiet Study Area' },
+                    { number: '211', x: 600, y: 350, description: 'Research Lab 3 - Cell Biology' },
+                    { number: '212', x: 700, y: 350, description: 'Research Lab 4 - Biochemistry' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'Ground Floor' },
+                    { x: 700, y: 50, width: 60, height: 200, leadsTo: 'Second Floor' }
+                ]
+            }
+        ]
+    },
+    'centre-of-biotechnology-bioinformatics': {
+        floors: [
+            {
+                name: 'Ground Floor',
+                rooms: [
+                    { number: '101', x: 100, y: 150, description: 'Biotechnology Lab 1 - General Lab' },
+                    { number: '102', x: 200, y: 150, description: 'Biotechnology Lab 2 - Advanced Lab' },
+                    { number: '103', x: 300, y: 150, description: 'Research Lab - Bioinformatics' },
+                    { number: '104', x: 400, y: 150, description: 'Staff Room - Faculty Office' },
+                    { number: '105', x: 500, y: 150, description: 'Storage - Equipment and Supplies' },
+                    { number: '113', x: 600, y: 150, description: 'Research Office 1 - Graduate Studies' },
+                    { number: '114', x: 700, y: 150, description: 'Research Office 2 - Postgraduate Studies' },
+                    { number: '106', x: 100, y: 350, description: 'Lecture Room 1 - Capacity: 40 students' },
+                    { number: '107', x: 200, y: 350, description: 'Lecture Room 2 - Capacity: 40 students' },
+                    { number: '108', x: 300, y: 350, description: 'Computer Lab 1 - Data Analysis' },
+                    { number: '109', x: 400, y: 350, description: 'Computer Lab 2 - Programming' },
+                    { number: '110', x: 500, y: 350, description: 'Admin Office - Department Administration' },
+                    { number: '111', x: 600, y: 350, description: 'Equipment Room - Specialized Equipment' },
+                    { number: '112', x: 700, y: 350, description: 'Student Lounge - Common Area' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'First Floor' }
+                ]
+            },
+            {
+                name: 'First Floor',
+                rooms: [
+                    { number: '201', x: 100, y: 150, description: 'Research Lab 1 - Genomics' },
+                    { number: '202', x: 200, y: 150, description: 'Research Lab 2 - Proteomics' },
+                    { number: '203', x: 300, y: 150, description: 'Graduate Studies - Research Office' },
+                    { number: '204', x: 400, y: 150, description: 'Faculty Office - Professors Office' },
+                    { number: '205', x: 500, y: 150, description: 'Meeting Room - Small Conference Space' },
+                    { number: '213', x: 600, y: 150, description: 'Faculty Lounge - Staff Break Room' },
+                    { number: '214', x: 700, y: 150, description: 'Department Head Office' },
+                    { number: '206', x: 100, y: 350, description: 'Computer Lab 3 - Bioinformatics' },
+                    { number: '207', x: 200, y: 350, description: 'Computer Lab 4 - Data Analysis' },
+                    { number: '208', x: 300, y: 350, description: 'Library - Reference Materials' },
+                    { number: '209', x: 400, y: 350, description: 'Study Room 1 - Group Study Area' },
+                    { number: '210', x: 500, y: 350, description: 'Study Room 2 - Quiet Study Area' },
+                    { number: '211', x: 600, y: 350, description: 'Research Lab 3 - Molecular Biology' },
+                    { number: '212', x: 700, y: 350, description: 'Research Lab 4 - Cell Biology' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'Ground Floor' }
+                ]
+            }
+        ]
+    },
+    'meteorology-department': {
+        floors: [
+            {
+                name: 'Ground Floor',
+                rooms: [
+                    { number: '101', x: 100, y: 150, description: 'Meteorology Lab 1 - Weather Analysis' },
+                    { number: '102', x: 200, y: 150, description: 'Meteorology Lab 2 - Climate Studies' },
+                    { number: '103', x: 300, y: 150, description: 'Research Lab - Climate Modeling' },
+                    { number: '104', x: 400, y: 150, description: 'Staff Room - Faculty Office' },
+                    { number: '105', x: 500, y: 150, description: 'Storage - Equipment and Supplies' },
+                    { number: '113', x: 600, y: 150, description: 'Research Office 1 - Graduate Studies' },
+                    { number: '114', x: 700, y: 150, description: 'Research Office 2 - Postgraduate Studies' },
+                    { number: '106', x: 100, y: 350, description: 'Lecture Room 1 - Capacity: 40 students' },
+                    { number: '107', x: 200, y: 350, description: 'Lecture Room 2 - Capacity: 40 students' },
+                    { number: '108', x: 300, y: 350, description: 'Computer Lab 1 - Data Analysis' },
+                    { number: '109', x: 400, y: 350, description: 'Computer Lab 2 - Weather Simulation' },
+                    { number: '110', x: 500, y: 350, description: 'Admin Office - Department Administration' },
+                    { number: '111', x: 600, y: 350, description: 'Equipment Room - Specialized Equipment' },
+                    { number: '112', x: 700, y: 350, description: 'Student Lounge - Common Area' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'First Floor' }
+                ]
+            },
+            {
+                name: 'First Floor',
+                rooms: [
+                    { number: '201', x: 100, y: 150, description: 'Research Lab 1 - Climate Data' },
+                    { number: '202', x: 200, y: 150, description: 'Research Lab 2 - Weather Systems' },
+                    { number: '203', x: 300, y: 150, description: 'Graduate Studies - Research Office' },
+                    { number: '204', x: 400, y: 150, description: 'Faculty Office - Professors Office' },
+                    { number: '205', x: 500, y: 150, description: 'Meeting Room - Small Conference Space' },
+                    { number: '213', x: 600, y: 150, description: 'Faculty Lounge - Staff Break Room' },
+                    { number: '214', x: 700, y: 150, description: 'Department Head Office' },
+                    { number: '206', x: 100, y: 350, description: 'Computer Lab 3 - Climate Modeling' },
+                    { number: '207', x: 200, y: 350, description: 'Computer Lab 4 - Data Analysis' },
+                    { number: '208', x: 300, y: 350, description: 'Library - Reference Materials' },
+                    { number: '209', x: 400, y: 350, description: 'Study Room 1 - Group Study Area' },
+                    { number: '210', x: 500, y: 350, description: 'Study Room 2 - Quiet Study Area' },
+                    { number: '211', x: 600, y: 350, description: 'Research Lab 3 - Atmospheric Studies' },
+                    { number: '212', x: 700, y: 350, description: 'Research Lab 4 - Environmental Studies' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'Ground Floor' }
+                ]
+            }
+        ]
+    },
+    'department-of-mathematics': {
+        floors: [
+            {
+                name: 'Ground Floor',
+                rooms: [
+                    { number: '101', x: 100, y: 150, description: 'Math Lab 1 - Applied Mathematics' },
+                    { number: '102', x: 200, y: 150, description: 'Math Lab 2 - Statistics' },
+                    { number: '103', x: 300, y: 150, description: 'Research Lab - Mathematical Modeling' },
+                    { number: '104', x: 400, y: 150, description: 'Staff Room - Faculty Office' },
+                    { number: '105', x: 500, y: 150, description: 'Storage - Equipment and Supplies' },
+                    { number: '113', x: 600, y: 150, description: 'Research Office 1 - Graduate Studies' },
+                    { number: '114', x: 700, y: 150, description: 'Research Office 2 - Postgraduate Studies' },
+                    { number: '106', x: 100, y: 350, description: 'Lecture Room 1 - Capacity: 50 students' },
+                    { number: '107', x: 200, y: 350, description: 'Lecture Room 2 - Capacity: 50 students' },
+                    { number: '108', x: 300, y: 350, description: 'Computer Lab 1 - Numerical Analysis' },
+                    { number: '109', x: 400, y: 350, description: 'Computer Lab 2 - Data Analysis' },
+                    { number: '110', x: 500, y: 350, description: 'Admin Office - Department Administration' },
+                    { number: '111', x: 600, y: 350, description: 'Equipment Room - Specialized Equipment' },
+                    { number: '112', x: 700, y: 350, description: 'Student Lounge - Common Area' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'First Floor' }
+                ]
+            },
+            {
+                name: 'First Floor',
+                rooms: [
+                    { number: '201', x: 100, y: 150, description: 'Research Lab 1 - Pure Mathematics' },
+                    { number: '202', x: 200, y: 150, description: 'Research Lab 2 - Applied Statistics' },
+                    { number: '203', x: 300, y: 150, description: 'Graduate Studies - Research Office' },
+                    { number: '204', x: 400, y: 150, description: 'Faculty Office - Professors Office' },
+                    { number: '205', x: 500, y: 150, description: 'Meeting Room - Small Conference Space' },
+                    { number: '213', x: 600, y: 150, description: 'Faculty Lounge - Staff Break Room' },
+                    { number: '214', x: 700, y: 150, description: 'Department Head Office' },
+                    { number: '206', x: 100, y: 350, description: 'Computer Lab 3 - Mathematical Software' },
+                    { number: '207', x: 200, y: 350, description: 'Computer Lab 4 - Statistical Analysis' },
+                    { number: '208', x: 300, y: 350, description: 'Library - Reference Materials' },
+                    { number: '209', x: 400, y: 350, description: 'Study Room 1 - Group Study Area' },
+                    { number: '210', x: 500, y: 350, description: 'Study Room 2 - Quiet Study Area' },
+                    { number: '211', x: 600, y: 350, description: 'Research Lab 3 - Operations Research' },
+                    { number: '212', x: 700, y: 350, description: 'Research Lab 4 - Financial Mathematics' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'Ground Floor' }
+                ]
+            }
+        ]
+    },
+    'physics-department': {
+        floors: [
+            {
+                name: 'Ground Floor',
+                rooms: [
+                    { number: '101', x: 100, y: 150, description: 'Physics Lab 1 - General Physics' },
+                    { number: '102', x: 200, y: 150, description: 'Physics Lab 2 - Mechanics' },
+                    { number: '103', x: 300, y: 150, description: 'Research Lab - Quantum Physics' },
+                    { number: '104', x: 400, y: 150, description: 'Staff Room - Faculty Office' },
+                    { number: '105', x: 500, y: 150, description: 'Storage - Equipment and Supplies' },
+                    { number: '113', x: 600, y: 150, description: 'Research Office 1 - Graduate Studies' },
+                    { number: '114', x: 700, y: 150, description: 'Research Office 2 - Postgraduate Studies' },
+                    { number: '106', x: 100, y: 350, description: 'Lecture Room 1 - Capacity: 50 students' },
+                    { number: '107', x: 200, y: 350, description: 'Lecture Room 2 - Capacity: 50 students' },
+                    { number: '108', x: 300, y: 350, description: 'Computer Lab 1 - Physics Simulation' },
+                    { number: '109', x: 400, y: 350, description: 'Computer Lab 2 - Data Analysis' },
+                    { number: '110', x: 500, y: 350, description: 'Admin Office - Department Administration' },
+                    { number: '111', x: 600, y: 350, description: 'Equipment Room - Specialized Equipment' },
+                    { number: '112', x: 700, y: 350, description: 'Student Lounge - Common Area' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'First Floor' }
+                ]
+            },
+            {
+                name: 'First Floor',
+                rooms: [
+                    { number: '201', x: 100, y: 150, description: 'Research Lab 1 - Electromagnetism' },
+                    { number: '202', x: 200, y: 150, description: 'Research Lab 2 - Thermodynamics' },
+                    { number: '203', x: 300, y: 150, description: 'Graduate Studies - Research Office' },
+                    { number: '204', x: 400, y: 150, description: 'Faculty Office - Professors Office' },
+                    { number: '205', x: 500, y: 150, description: 'Meeting Room - Small Conference Space' },
+                    { number: '213', x: 600, y: 150, description: 'Faculty Lounge - Staff Break Room' },
+                    { number: '214', x: 700, y: 150, description: 'Department Head Office' },
+                    { number: '206', x: 100, y: 350, description: 'Computer Lab 3 - Astrophysics' },
+                    { number: '207', x: 200, y: 350, description: 'Computer Lab 4 - Particle Physics' },
+                    { number: '208', x: 300, y: 350, description: 'Library - Reference Materials' },
+                    { number: '209', x: 400, y: 350, description: 'Study Room 1 - Group Study Area' },
+                    { number: '210', x: 500, y: 350, description: 'Study Room 2 - Quiet Study Area' },
+                    { number: '211', x: 600, y: 350, description: 'Research Lab 3 - Optics' },
+                    { number: '212', x: 700, y: 350, description: 'Research Lab 4 - Nuclear Physics' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'Ground Floor' }
+                ]
+            }
+        ]
+    },
+    'department-of-earth-and-climate-sciences': {
+        floors: [
+            {
+                name: 'Ground Floor',
+                rooms: [
+                    { number: '101', x: 100, y: 150, description: 'Geology Lab 1 - Mineralogy' },
+                    { number: '102', x: 200, y: 150, description: 'Geology Lab 2 - Petrology' },
+                    { number: '103', x: 300, y: 150, description: 'Research Lab - Climate Studies' },
+                    { number: '104', x: 400, y: 150, description: 'Staff Room - Faculty Office' },
+                    { number: '105', x: 500, y: 150, description: 'Storage - Equipment and Supplies' },
+                    { number: '113', x: 600, y: 150, description: 'Research Office 1 - Graduate Studies' },
+                    { number: '114', x: 700, y: 150, description: 'Research Office 2 - Postgraduate Studies' },
+                    { number: '106', x: 100, y: 350, description: 'Lecture Room 1 - Capacity: 50 students' },
+                    { number: '107', x: 200, y: 350, description: 'Lecture Room 2 - Capacity: 50 students' },
+                    { number: '108', x: 300, y: 350, description: 'Computer Lab 1 - GIS' },
+                    { number: '109', x: 400, y: 350, description: 'Computer Lab 2 - Climate Modeling' },
+                    { number: '110', x: 500, y: 350, description: 'Admin Office - Department Administration' },
+                    { number: '111', x: 600, y: 350, description: 'Equipment Room - Specialized Equipment' },
+                    { number: '112', x: 700, y: 350, description: 'Student Lounge - Common Area' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'First Floor' }
+                ]
+            },
+            {
+                name: 'First Floor',
+                rooms: [
+                    { number: '201', x: 100, y: 150, description: 'Research Lab 1 - Paleontology' },
+                    { number: '202', x: 200, y: 150, description: 'Research Lab 2 - Geophysics' },
+                    { number: '203', x: 300, y: 150, description: 'Graduate Studies - Research Office' },
+                    { number: '204', x: 400, y: 150, description: 'Faculty Office - Professors Office' },
+                    { number: '205', x: 500, y: 150, description: 'Meeting Room - Small Conference Space' },
+                    { number: '213', x: 600, y: 150, description: 'Faculty Lounge - Staff Break Room' },
+                    { number: '214', x: 700, y: 150, description: 'Department Head Office' },
+                    { number: '206', x: 100, y: 350, description: 'Computer Lab 3 - Remote Sensing' },
+                    { number: '207', x: 200, y: 350, description: 'Computer Lab 4 - Environmental Analysis' },
+                    { number: '208', x: 300, y: 350, description: 'Library - Reference Materials' },
+                    { number: '209', x: 400, y: 350, description: 'Study Room 1 - Group Study Area' },
+                    { number: '210', x: 500, y: 350, description: 'Study Room 2 - Quiet Study Area' },
+                    { number: '211', x: 600, y: 350, description: 'Research Lab 3 - Hydrology' },
+                    { number: '212', x: 700, y: 350, description: 'Research Lab 4 - Oceanography' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'Ground Floor' }
+                ]
+            }
+        ]
+    },
+    'school-of-physical-sciences': {
+        floors: [
+            {
+                name: 'Ground Floor',
+                rooms: [
+                    { number: '101', x: 100, y: 150, description: 'Physics Lab 1 - General Physics' },
+                    { number: '102', x: 200, y: 150, description: 'Chemistry Lab 1 - General Chemistry' },
+                    { number: '103', x: 300, y: 150, description: 'Research Lab - Materials Science' },
+                    { number: '104', x: 400, y: 150, description: 'Staff Room - Faculty Office' },
+                    { number: '105', x: 500, y: 150, description: 'Storage - Equipment and Supplies' },
+                    { number: '113', x: 600, y: 150, description: 'Research Office 1 - Graduate Studies' },
+                    { number: '114', x: 700, y: 150, description: 'Research Office 2 - Postgraduate Studies' },
+                    { number: '106', x: 100, y: 350, description: 'Lecture Room 1 - Capacity: 50 students' },
+                    { number: '107', x: 200, y: 350, description: 'Lecture Room 2 - Capacity: 50 students' },
+                    { number: '108', x: 300, y: 350, description: 'Computer Lab 1 - Scientific Computing' },
+                    { number: '109', x: 400, y: 350, description: 'Computer Lab 2 - Data Analysis' },
+                    { number: '110', x: 500, y: 350, description: 'Admin Office - Department Administration' },
+                    { number: '111', x: 600, y: 350, description: 'Equipment Room - Specialized Equipment' },
+                    { number: '112', x: 700, y: 350, description: 'Student Lounge - Common Area' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'First Floor' }
+                ]
+            },
+            {
+                name: 'First Floor',
+                rooms: [
+                    { number: '201', x: 100, y: 150, description: 'Research Lab 1 - Quantum Physics' },
+                    { number: '202', x: 200, y: 150, description: 'Research Lab 2 - Organic Chemistry' },
+                    { number: '203', x: 300, y: 150, description: 'Graduate Studies - Research Office' },
+                    { number: '204', x: 400, y: 150, description: 'Faculty Office - Professors Office' },
+                    { number: '205', x: 500, y: 150, description: 'Meeting Room - Small Conference Space' },
+                    { number: '213', x: 600, y: 150, description: 'Faculty Lounge - Staff Break Room' },
+                    { number: '214', x: 700, y: 150, description: 'Department Head Office' },
+                    { number: '206', x: 100, y: 350, description: 'Computer Lab 3 - Molecular Modeling' },
+                    { number: '207', x: 200, y: 350, description: 'Computer Lab 4 - Spectroscopy' },
+                    { number: '208', x: 300, y: 350, description: 'Library - Reference Materials' },
+                    { number: '209', x: 400, y: 350, description: 'Study Room 1 - Group Study Area' },
+                    { number: '210', x: 500, y: 350, description: 'Study Room 2 - Quiet Study Area' },
+                    { number: '211', x: 600, y: 350, description: 'Research Lab 3 - Nanotechnology' },
+                    { number: '212', x: 700, y: 350, description: 'Research Lab 4 - Biophysics' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'Ground Floor' }
+                ]
+            }
+        ]
+    },
+    'department-of-veterinary-anatomy-physiology': {
+        floors: [
+            {
+                name: 'Ground Floor',
+                rooms: [
+                    { number: '101', x: 100, y: 150, description: 'Anatomy Lab 1 - Gross Anatomy' },
+                    { number: '102', x: 200, y: 150, description: 'Anatomy Lab 2 - Microscopic Anatomy' },
+                    { number: '103', x: 300, y: 150, description: 'Research Lab - Comparative Anatomy' },
+                    { number: '104', x: 400, y: 150, description: 'Staff Room - Faculty Office' },
+                    { number: '105', x: 500, y: 150, description: 'Storage - Equipment and Supplies' },
+                    { number: '113', x: 600, y: 150, description: 'Research Office 1 - Graduate Studies' },
+                    { number: '114', x: 700, y: 150, description: 'Research Office 2 - Postgraduate Studies' },
+                    { number: '106', x: 100, y: 350, description: 'Lecture Room 1 - Capacity: 40 students' },
+                    { number: '107', x: 200, y: 350, description: 'Lecture Room 2 - Capacity: 40 students' },
+                    { number: '108', x: 300, y: 350, description: 'Computer Lab 1 - Digital Anatomy' },
+                    { number: '109', x: 400, y: 350, description: 'Computer Lab 2 - 3D Modeling' },
+                    { number: '110', x: 500, y: 350, description: 'Admin Office - Department Administration' },
+                    { number: '111', x: 600, y: 350, description: 'Equipment Room - Specialized Equipment' },
+                    { number: '112', x: 700, y: 350, description: 'Student Lounge - Common Area' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'First Floor' }
+                ]
+            },
+            {
+                name: 'First Floor',
+                rooms: [
+                    { number: '201', x: 100, y: 150, description: 'Research Lab 1 - Histology' },
+                    { number: '202', x: 200, y: 150, description: 'Research Lab 2 - Embryology' },
+                    { number: '203', x: 300, y: 150, description: 'Graduate Studies - Research Office' },
+                    { number: '204', x: 400, y: 150, description: 'Faculty Office - Professors Office' },
+                    { number: '205', x: 500, y: 150, description: 'Meeting Room - Small Conference Space' },
+                    { number: '213', x: 600, y: 150, description: 'Faculty Lounge - Staff Break Room' },
+                    { number: '214', x: 700, y: 150, description: 'Department Head Office' },
+                    { number: '206', x: 100, y: 350, description: 'Computer Lab 3 - Virtual Anatomy' },
+                    { number: '207', x: 200, y: 350, description: 'Computer Lab 4 - Imaging Analysis' },
+                    { number: '208', x: 300, y: 350, description: 'Library - Reference Materials' },
+                    { number: '209', x: 400, y: 350, description: 'Study Room 1 - Group Study Area' },
+                    { number: '210', x: 500, y: 350, description: 'Study Room 2 - Quiet Study Area' },
+                    { number: '211', x: 600, y: 350, description: 'Research Lab 3 - Neuroanatomy' },
+                    { number: '212', x: 700, y: 350, description: 'Research Lab 4 - Comparative Physiology' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'Ground Floor' }
+                ]
+            }
+        ]
+    },
+    'department-of-computing-and-informatics': {
+        floors: [
+            {
+                name: 'Ground Floor',
+                rooms: [
+                    { number: '101', x: 100, y: 150, description: 'Computer Lab 1 - Programming' },
+                    { number: '102', x: 200, y: 150, description: 'Computer Lab 2 - Database Systems' },
+                    { number: '103', x: 300, y: 150, description: 'Research Lab - AI & Machine Learning' },
+                    { number: '104', x: 400, y: 150, description: 'Staff Room - Faculty Office' },
+                    { number: '105', x: 500, y: 150, description: 'Server Room - Network Infrastructure' },
+                    { number: '113', x: 600, y: 150, description: 'Research Office 1 - Graduate Studies' },
+                    { number: '114', x: 700, y: 150, description: 'Research Office 2 - Postgraduate Studies' },
+                    { number: '106', x: 100, y: 350, description: 'Lecture Room 1 - Capacity: 50 students' },
+                    { number: '107', x: 200, y: 350, description: 'Lecture Room 2 - Capacity: 50 students' },
+                    { number: '108', x: 300, y: 350, description: 'Computer Lab 3 - Web Development' },
+                    { number: '109', x: 400, y: 350, description: 'Computer Lab 4 - Software Engineering' },
+                    { number: '110', x: 500, y: 350, description: 'Admin Office - Department Administration' },
+                    { number: '111', x: 600, y: 350, description: 'Equipment Room - Hardware Lab' },
+                    { number: '112', x: 700, y: 350, description: 'Student Lounge - Common Area' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'First Floor' }
+                ]
+            },
+            {
+                name: 'First Floor',
+                rooms: [
+                    { number: '201', x: 100, y: 150, description: 'Research Lab 1 - Cybersecurity' },
+                    { number: '202', x: 200, y: 150, description: 'Research Lab 2 - Data Science' },
+                    { number: '203', x: 300, y: 150, description: 'Graduate Studies - Research Office' },
+                    { number: '204', x: 400, y: 150, description: 'Faculty Office - Professors Office' },
+                    { number: '205', x: 500, y: 150, description: 'Meeting Room - Small Conference Space' },
+                    { number: '213', x: 600, y: 150, description: 'Faculty Lounge - Staff Break Room' },
+                    { number: '214', x: 700, y: 150, description: 'Department Head Office' },
+                    { number: '206', x: 100, y: 350, description: 'Computer Lab 5 - Network Security' },
+                    { number: '207', x: 200, y: 350, description: 'Computer Lab 6 - Cloud Computing' },
+                    { number: '208', x: 300, y: 350, description: 'Library - Reference Materials' },
+                    { number: '209', x: 400, y: 350, description: 'Study Room 1 - Group Study Area' },
+                    { number: '210', x: 500, y: 350, description: 'Study Room 2 - Quiet Study Area' },
+                    { number: '211', x: 600, y: 350, description: 'Research Lab 3 - IoT' },
+                    { number: '212', x: 700, y: 350, description: 'Research Lab 4 - Mobile Computing' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'Ground Floor' }
+                ]
+            }
+        ]
+    },
+    'uon-chemistry-department': {
+        floors: [
+            {
+                name: 'Ground Floor',
+                rooms: [
+                    { number: '101', x: 100, y: 150, description: 'Chemistry Lab 1 - General Chemistry' },
+                    { number: '102', x: 200, y: 150, description: 'Chemistry Lab 2 - Organic Chemistry' },
+                    { number: '103', x: 300, y: 150, description: 'Research Lab - Analytical Chemistry' },
+                    { number: '104', x: 400, y: 150, description: 'Staff Room - Faculty Office' },
+                    { number: '105', x: 500, y: 150, description: 'Storage - Chemical Storage' },
+                    { number: '113', x: 600, y: 150, description: 'Research Office 1 - Graduate Studies' },
+                    { number: '114', x: 700, y: 150, description: 'Research Office 2 - Postgraduate Studies' },
+                    { number: '106', x: 100, y: 350, description: 'Lecture Room 1 - Capacity: 50 students' },
+                    { number: '107', x: 200, y: 350, description: 'Lecture Room 2 - Capacity: 50 students' },
+                    { number: '108', x: 300, y: 350, description: 'Computer Lab 1 - Chemical Modeling' },
+                    { number: '109', x: 400, y: 350, description: 'Computer Lab 2 - Data Analysis' },
+                    { number: '110', x: 500, y: 350, description: 'Admin Office - Department Administration' },
+                    { number: '111', x: 600, y: 350, description: 'Equipment Room - Specialized Equipment' },
+                    { number: '112', x: 700, y: 350, description: 'Student Lounge - Common Area' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'First Floor' }
+                ]
+            },
+            {
+                name: 'First Floor',
+                rooms: [
+                    { number: '201', x: 100, y: 150, description: 'Research Lab 1 - Physical Chemistry' },
+                    { number: '202', x: 200, y: 150, description: 'Research Lab 2 - Inorganic Chemistry' },
+                    { number: '203', x: 300, y: 150, description: 'Graduate Studies - Research Office' },
+                    { number: '204', x: 400, y: 150, description: 'Faculty Office - Professors Office' },
+                    { number: '205', x: 500, y: 150, description: 'Meeting Room - Small Conference Space' },
+                    { number: '213', x: 600, y: 150, description: 'Faculty Lounge - Staff Break Room' },
+                    { number: '214', x: 700, y: 150, description: 'Department Head Office' },
+                    { number: '206', x: 100, y: 350, description: 'Computer Lab 3 - Molecular Modeling' },
+                    { number: '207', x: 200, y: 350, description: 'Computer Lab 4 - Spectroscopy' },
+                    { number: '208', x: 300, y: 350, description: 'Library - Reference Materials' },
+                    { number: '209', x: 400, y: 350, description: 'Study Room 1 - Group Study Area' },
+                    { number: '210', x: 500, y: 350, description: 'Study Room 2 - Quiet Study Area' },
+                    { number: '211', x: 600, y: 350, description: 'Research Lab 3 - Biochemistry' },
+                    { number: '212', x: 700, y: 350, description: 'Research Lab 4 - Environmental Chemistry' }
+                ],
+                pathways: [
+                    { type: 'horizontal', x: 50, y: 250, width: 700, height: 60 },
+                    { type: 'vertical', x: 370, y: 50, width: 60, height: 200 }
+                ],
+                entrances: [
+                    { x: 50, y: 250, width: 40, height: 40 }
+                ],
+                staircases: [
+                    { x: 50, y: 50, width: 60, height: 200, leadsTo: 'Ground Floor' }
+                ]
+            }
+        ]
+    }
 };
 
 // Function to normalize building IDs
@@ -555,30 +1254,438 @@ function createDetailedPopup(location) {
     const info = buildingInfo[buildingId];
     
     if (info) {
-        return `
-            <div class="popup-content">
-                ${info.image ? `
-                    <div class="popup-image" style="margin-bottom: 10px;">
-                        <img src="${info.image}" alt="${info.name}" style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 4px;">
-                    </div>
-                ` : ''}
-                <h3 style="margin: 0 0 10px 0; color: #1a237e;">${info.name}</h3>
-                <p style="margin: 5px 0;"><strong>Department:</strong> ${info.department}</p>
-                <p style="margin: 5px 0;"><strong>Description:</strong> ${info.description}</p>
-                <p style="margin: 5px 0;"><strong>Contact:</strong><br>${info.contact}</p>
-                ${info.rooms ? `<p style="margin: 5px 0;"><strong>Rooms:</strong> ${info.rooms}</p>` : ''}
-            </div>
-        `;
+        const popupContent = document.createElement('div');
+        popupContent.className = 'popup-content';
+        
+        // Create image if available
+        if (info.image) {
+            const imageDiv = document.createElement('div');
+            imageDiv.style.marginBottom = '10px';
+            const img = document.createElement('img');
+            img.src = info.image;
+            img.alt = info.name;
+            img.style.width = '100%';
+            img.style.maxHeight = '150px';
+            img.style.objectFit = 'cover';
+            img.style.borderRadius = '4px';
+            imageDiv.appendChild(img);
+            popupContent.appendChild(imageDiv);
+        }
+
+        // Create title
+        const title = document.createElement('h3');
+        title.style.margin = '0 0 10px 0';
+        title.style.color = '#1a237e';
+        title.textContent = info.name;
+        popupContent.appendChild(title);
+
+        // Create department info
+        const department = document.createElement('p');
+        department.style.margin = '5px 0';
+        department.innerHTML = `<strong>Department:</strong> ${info.department}`;
+        popupContent.appendChild(department);
+
+        // Create description
+        const description = document.createElement('p');
+        description.style.margin = '5px 0';
+        description.innerHTML = `<strong>Description:</strong> ${info.description}`;
+        popupContent.appendChild(description);
+
+        // Create contact info
+        const contact = document.createElement('p');
+        contact.style.margin = '5px 0';
+        contact.innerHTML = `<strong>Contact:</strong><br>${info.contact}`;
+        popupContent.appendChild(contact);
+
+        // Create rooms info if available
+        if (info.rooms) {
+            const rooms = document.createElement('p');
+            rooms.style.margin = '5px 0';
+            rooms.innerHTML = `<strong>Rooms:</strong> ${info.rooms}`;
+            popupContent.appendChild(rooms);
+        }
+
+        // Only create indoor navigation button for department locations
+        if (location.category === 'departments') {
+            // Create indoor navigation button
+            const buttonContainer = document.createElement('div');
+            buttonContainer.style.marginTop = '10px';
+            buttonContainer.style.textAlign = 'center';
+            
+            const indoorNavButton = document.createElement('button');
+            indoorNavButton.className = 'indoor-nav-btn';
+            indoorNavButton.textContent = 'View Indoor Navigation';
+            indoorNavButton.style.cssText = `
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+            `;
+            
+            // Add click event listener
+            indoorNavButton.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent popup from closing
+                showIndoorNavigation(buildingId);
+            });
+            
+            buttonContainer.appendChild(indoorNavButton);
+            popupContent.appendChild(buttonContainer);
+        }
+
+        return popupContent;
     } else {
         // Fallback to basic information if detailed info is not available
-        return `
-            <div class="popup-content">
-                <h3 style="margin: 0 0 10px 0; color: #1a237e;">${location.name}</h3>
-                <p style="margin: 5px 0;">${location.description || 'No description available.'}</p>
-            </div>
-        `;
+        const basicContent = document.createElement('div');
+        basicContent.className = 'popup-content';
+        
+        const title = document.createElement('h3');
+        title.style.margin = '0 0 10px 0';
+        title.style.color = '#1a237e';
+        title.textContent = location.name;
+        basicContent.appendChild(title);
+        
+        const description = document.createElement('p');
+        description.style.margin = '5px 0';
+        description.textContent = location.description || 'No description available.';
+        basicContent.appendChild(description);
+        
+        return basicContent;
     }
 }
+
+// Function to show indoor navigation
+function showIndoorNavigation(buildingId) {
+    const indoorNavContainer = document.getElementById('indoor-navigation-container');
+    if (!indoorNavContainer) {
+        // Create indoor navigation container if it doesn't exist
+        const container = document.createElement('div');
+        container.id = 'indoor-navigation-container';
+        container.style.cssText = `
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+            max-height: 80vh;
+            overflow-y: auto;
+        `;
+        document.body.appendChild(container);
+    }
+
+    // Get building info and floor plan data
+    const building = buildingInfo[buildingId];
+    const floorPlan = indoorMaps[buildingId];
+    
+    if (!building || !floorPlan) {
+        alert('Indoor navigation is not available for this building yet.');
+        return;
+    }
+
+    // Create indoor navigation content with two-column layout
+    const indoorNavContent = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h3 style="margin: 0;">${building.name} - Indoor Navigation</h3>
+            <button id="close-indoor-nav" style="
+                background: none;
+                border: none;
+                color: #666;
+                cursor: pointer;
+                font-size: 20px;
+                padding: 5px;
+            ">×</button>
+        </div>
+        <div style="display: flex; gap: 20px;">
+            <!-- Left column - Floor plan -->
+            <div style="flex: 1; min-width: 0;">
+                <div class="floor-selector" style="margin-bottom: 15px;">
+                    <select id="floor-select" style="
+                        padding: 8px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        width: 100%;
+                    ">
+                        ${floorPlan.floors.map((floor, index) => `
+                            <option value="${index}">${floor.name}</option>
+                        `).join('')}
+                    </select>
+                </div>
+                <div id="indoor-map-container" style="
+                    height: 400px;
+                    background: #f5f5f5;
+                    border-radius: 4px;
+                    position: relative;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                ">
+                    <canvas id="floor-plan-canvas" style="
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: contain;
+                        display: block;
+                    "></canvas>
+                </div>
+            </div>
+            
+            <!-- Right column - Room information -->
+            <div style="flex: 1; min-width: 0;">
+                <div style="margin-bottom: 15px;">
+                    <h4>Room Search</h4>
+                    <input type="text" id="room-search" placeholder="Search for a room..." style="
+                        width: 100%;
+                        padding: 8px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        margin-bottom: 10px;
+                    ">
+                </div>
+                <div id="room-results" style="
+                    max-height: 400px;
+                    overflow-y: auto;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    padding: 10px;
+                ">
+                    <div style="color: #666; text-align: center; padding: 20px;">
+                        Search for rooms to see results
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Update container content and show it
+    indoorNavContainer.innerHTML = indoorNavContent;
+    indoorNavContainer.style.display = 'block';
+
+    // Add event listener for close button
+    document.getElementById('close-indoor-nav').addEventListener('click', hideIndoorNavigation);
+
+    // Initialize floor selection and canvas
+    const floorSelect = document.getElementById('floor-select');
+    const canvas = document.getElementById('floor-plan-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas size
+    canvas.width = 800;
+    canvas.height = 600;
+
+    // Function to draw floor plan
+    function drawFloorPlan(floor) {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw background
+        ctx.fillStyle = '#f5f5f5';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw pathways
+        floor.pathways.forEach(pathway => {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(pathway.x, pathway.y, pathway.width, pathway.height);
+            ctx.font = '14px Arial';
+            ctx.fillStyle = '#666666';
+            ctx.textAlign = 'center';
+            if (pathway.type === 'horizontal') {
+                ctx.fillText('PATHWAY', pathway.x + pathway.width/2, pathway.y + pathway.height/2 + 5);
+            } else {
+                ctx.save();
+                ctx.translate(pathway.x + pathway.width/2, pathway.y + pathway.height/2);
+                ctx.rotate(Math.PI/2);
+                ctx.fillText('PATHWAY', 0, 0);
+                ctx.restore();
+            }
+        });
+
+        // Draw entrances
+        floor.entrances.forEach(entrance => {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(entrance.x, entrance.y, entrance.width, entrance.height);
+            ctx.fillStyle = '#666666';
+            ctx.font = '12px Arial';
+            ctx.fillText('ENTRANCE', entrance.x + entrance.width/2, entrance.y + entrance.height + 15);
+        });
+
+        // Draw staircases
+        floor.staircases.forEach(staircase => {
+            ctx.fillStyle = '#e6f3ff';
+            ctx.fillRect(staircase.x, staircase.y, staircase.width, staircase.height);
+            ctx.strokeStyle = '#0066cc';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(staircase.x, staircase.y, staircase.width, staircase.height);
+            ctx.fillStyle = '#0066cc';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.save();
+            ctx.translate(staircase.x + staircase.width/2, staircase.y + staircase.height/2);
+            ctx.rotate(Math.PI/2);
+            ctx.fillText(`STAIRCASE TO ${staircase.leadsTo}`, 0, 0);
+            ctx.restore();
+        });
+
+        // Draw rooms
+        const roomWidth = 150;
+        const roomHeight = 100;
+
+        // Upper section rooms (above pathway)
+        const upperRooms = floor.rooms.filter(room => room.y < 250);
+        // Lower section rooms (below pathway)
+        const lowerRooms = floor.rooms.filter(room => room.y >= 250);
+
+        // Draw all rooms
+        [...upperRooms, ...lowerRooms].forEach((room, index) => {
+            // Draw room rectangle
+            ctx.fillStyle = '#e6f3ff';  // Light blue background
+            ctx.fillRect(room.x, room.y, roomWidth, roomHeight);
+            ctx.strokeStyle = '#333333';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(room.x, room.y, roomWidth, roomHeight);
+
+            // Draw door
+            const doorWidth = 20;
+            const doorHeight = 5;
+            ctx.fillStyle = '#8b4513';  // Brown color for door
+            if (index < upperRooms.length) {
+                // Doors for upper rooms
+                if (index < 2) {
+                    // Left section doors on right side
+                    ctx.fillRect(room.x + roomWidth - doorWidth, room.y + roomHeight - 30, doorWidth, doorHeight);
+                } else {
+                    // Right section doors on left side
+                    ctx.fillRect(room.x, room.y + roomHeight - 30, doorWidth, doorHeight);
+                }
+            } else {
+                // Doors for lower rooms on top
+                ctx.fillRect(room.x + roomWidth/2 - doorWidth/2, room.y, doorWidth, doorHeight);
+            }
+
+            // Add room number and description
+            ctx.fillStyle = '#333333';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(room.number, room.x + roomWidth/2, room.y + 30);
+            
+            // Add room description (truncated)
+            if (room.description) {
+                const description = room.description.split(' - ')[0];
+                ctx.font = '10px Arial';
+                ctx.fillText(description, room.x + roomWidth/2, room.y + 50);
+            }
+        });
+
+        // Draw legend
+        ctx.fillStyle = '#333333';
+        ctx.font = '14px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillText('Room Legend:', 10, 550);
+        ctx.font = '12px Arial';
+        ctx.fillText('• Brown rectangles represent doors', 10, 570);
+        ctx.fillText('• Light blue areas represent rooms', 10, 590);
+        ctx.fillText('• White areas represent pathways', 10, 610);
+        ctx.fillText('• Blue rectangles represent staircases', 10, 630);
+    }
+
+    // Function to update floor plan
+    function updateFloorPlan(floorIndex) {
+        const floor = floorPlan.floors[floorIndex];
+        drawFloorPlan(floor);
+    }
+
+    // Initialize with first floor
+    updateFloorPlan(0);
+
+    // Add event listener for floor selection
+    floorSelect.addEventListener('change', (e) => {
+        updateFloorPlan(parseInt(e.target.value));
+    });
+
+    // Add room search functionality
+    const roomSearch = document.getElementById('room-search');
+    const roomResults = document.getElementById('room-results');
+
+    roomSearch.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const currentFloor = floorPlan.floors[floorSelect.value];
+        
+        const results = currentFloor.rooms.filter(room => 
+            room.number.toLowerCase().includes(searchTerm) || 
+            room.description.toLowerCase().includes(searchTerm)
+        );
+
+        if (results.length === 0) {
+            roomResults.innerHTML = '<div style="color: #666; text-align: center; padding: 20px;">No rooms found</div>';
+        } else {
+            roomResults.innerHTML = results.map(room => `
+                <div style="
+                    padding: 10px;
+                    border-bottom: 1px solid #eee;
+                    cursor: pointer;
+                " onclick="highlightRoom(${room.x}, ${room.y})">
+                    <strong>Room ${room.number}</strong><br>
+                    ${room.description}
+                </div>
+            `).join('');
+        }
+    });
+}
+
+// Function to highlight a room on the floor plan
+function highlightRoom(x, y) {
+    const canvas = document.getElementById('floor-plan-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Draw highlight rectangle
+    ctx.strokeStyle = '#ff0000';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(x, y, 100, 80);
+    
+    // Remove highlight after 2 seconds
+    setTimeout(() => {
+        const floorSelect = document.getElementById('floor-select');
+        const floorIndex = parseInt(floorSelect.value);
+        const building = buildingInfo[buildingId];
+        updateFloorPlan(floorIndex);
+    }, 2000);
+}
+
+// Function to hide indoor navigation
+function hideIndoorNavigation() {
+    const indoorNavContainer = document.getElementById('indoor-navigation-container');
+    if (indoorNavContainer) {
+        indoorNavContainer.style.display = 'none';
+    }
+}
+
+// Add CSS for indoor navigation
+const indoorNavStyle = document.createElement('style');
+indoorNavStyle.textContent = `
+    .indoor-nav-btn:hover {
+        background-color: #45a049 !important;
+    }
+    #indoor-navigation-container {
+        transition: all 0.3s ease;
+    }
+    #room-results div:hover {
+        background-color: #f5f5f5;
+        cursor: pointer;
+    }
+    .room-marker:hover {
+        transform: translate(-50%, -50%) scale(1.2) !important;
+        z-index: 1;
+    }
+    .room-result:hover {
+        background-color: #f5f5f5;
+    }
+`;
+document.head.appendChild(indoorNavStyle);
 
 // Create markers for locations
 locations.forEach(location => {
@@ -1003,5 +2110,317 @@ map.eachLayer((layer) => {
 // Add the legend to the map
 const legend = new L.Control.BottomCenter();
 map.addControl(legend);
+
+// GPS Tracking Variables
+let userMarker = null;
+let watchId = null;
+let isTracking = false;
+
+// Function to update user location
+function updateUserLocation(position) {
+    const { latitude, longitude } = position.coords;
+    const userLocation = [latitude, longitude];
+    
+    if (!userMarker) {
+        // Create a new marker if it doesn't exist
+        userMarker = L.marker(userLocation, {
+            icon: L.divIcon({
+                className: 'user-location-marker',
+                html: '<div class="user-location-icon"><i class="fas fa-user"></i></div>',
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            })
+        }).addTo(map);
+    } else {
+        // Update existing marker position
+        userMarker.setLatLng(userLocation);
+    }
+    
+    // Center map on user location
+    map.setView(userLocation, 19);
+}
+
+// Function to start GPS tracking
+function startGPSTracking() {
+    if (!isTracking) {
+        if (navigator.geolocation) {
+            // Get initial position
+            navigator.geolocation.getCurrentPosition(updateUserLocation, (error) => {
+                console.error('Error getting location:', error);
+                alert('Unable to get your location. Please ensure location services are enabled.');
+            });
+            
+            // Start watching position
+            watchId = navigator.geolocation.watchPosition(
+                updateUserLocation,
+                (error) => {
+                    console.error('Error watching location:', error);
+                    alert('Error tracking location. Please check your location settings.');
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                }
+            );
+            
+            isTracking = true;
+            document.getElementById('gpsTrackBtn').classList.add('active');
+        } else {
+            alert('Geolocation is not supported by your browser.');
+        }
+    }
+}
+
+// Function to stop GPS tracking
+function stopGPSTracking() {
+    if (isTracking && watchId) {
+        navigator.geolocation.clearWatch(watchId);
+        watchId = null;
+        isTracking = false;
+        document.getElementById('gpsTrackBtn').classList.remove('active');
+        
+        // Optionally remove the user marker
+        if (userMarker) {
+            map.removeLayer(userMarker);
+            userMarker = null;
+        }
+    }
+}
+
+// Add event listener for GPS tracking button
+document.getElementById('gpsTrackBtn').addEventListener('click', () => {
+    if (!isTracking) {
+        startGPSTracking();
+    } else {
+        stopGPSTracking();
+    }
+});
+
+// Add CSS for user location marker
+const style = document.createElement('style');
+style.textContent = `
+    .user-location-marker {
+        background: transparent;
+        border: none;
+    }
+    .user-location-icon {
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .user-location-icon i {
+        font-size: 16px;
+    }
+    .map-control-button.active {
+        background-color: #4CAF50 !important;
+        color: white;
+    }
+`;
+document.head.appendChild(style);
+
+// Routing Variables
+let routingControl = null;
+let currentRoute = null;
+
+// Function to populate location dropdowns
+function populateLocationDropdowns() {
+    const fromSelect = document.getElementById('from-location');
+    const toSelect = document.getElementById('to-location');
+    
+    // Clear existing options except the first one
+    while (fromSelect.options.length > 1) fromSelect.remove(1);
+    while (toSelect.options.length > 1) toSelect.remove(1);
+    
+    // Add all locations to both dropdowns
+    locations.forEach(location => {
+        const option = new Option(location.name, JSON.stringify(location.coordinates));
+        fromSelect.add(option.cloneNode(true));
+        toSelect.add(option);
+    });
+}
+
+// Function to create route
+function createRoute(fromCoords, toCoords, mode) {
+    // Remove existing route if any
+    if (routingControl) {
+        map.removeControl(routingControl);
+    }
+    
+    // Create new route
+    routingControl = L.Routing.control({
+        waypoints: [
+            L.latLng(fromCoords[0], fromCoords[1]),
+            L.latLng(toCoords[0], toCoords[1])
+        ],
+        routeWhileDragging: true,
+        showAlternatives: false,
+        addWaypoints: false,
+        draggableWaypoints: false,
+        fitSelectedRoutes: true,
+        show: true,
+        lineOptions: {
+            styles: [
+                {
+                    color: '#3388ff',
+                    opacity: 0.8,
+                    weight: 5
+                }
+            ]
+        },
+        createMarker: function(i, waypoint, n) {
+            return L.marker(waypoint.latLng, {
+                icon: L.divIcon({
+                    className: 'route-marker',
+                    html: `<div class="route-marker-icon">${i === 0 ? 'A' : 'B'}</div>`,
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15]
+                })
+            });
+        }
+    }).addTo(map);
+    
+    // Store current route
+    currentRoute = {
+        from: fromCoords,
+        to: toCoords,
+        mode: mode
+    };
+    
+    // Add route instructions
+    routingControl.on('routesfound', function(e) {
+        const routes = e.routes;
+        const instructions = document.getElementById('route-instructions');
+        instructions.innerHTML = '';
+        
+        if (routes && routes[0]) {
+            const route = routes[0];
+            const steps = route.instructions;
+            
+            const instructionsList = document.createElement('ol');
+            steps.forEach(step => {
+                const li = document.createElement('li');
+                li.innerHTML = step.text;
+                instructionsList.appendChild(li);
+            });
+            
+            instructions.appendChild(instructionsList);
+            
+            // Add summary
+            const summary = document.createElement('div');
+            summary.className = 'route-summary';
+            summary.innerHTML = `
+                <p><strong>Total Distance:</strong> ${(route.summary.totalDistance / 1000).toFixed(2)} km</p>
+                <p><strong>Estimated Time:</strong> ${Math.round(route.summary.totalTime / 60)} minutes</p>
+            `;
+            instructions.insertBefore(summary, instructionsList);
+        }
+    });
+}
+
+// Function to clear route
+function clearRoute() {
+    if (routingControl) {
+        map.removeControl(routingControl);
+        routingControl = null;
+    }
+    currentRoute = null;
+    document.getElementById('route-instructions').innerHTML = '';
+    document.getElementById('from-location').value = '';
+    document.getElementById('to-location').value = '';
+}
+
+// Add event listeners for routing
+document.getElementById('route-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const fromSelect = document.getElementById('from-location');
+    const toSelect = document.getElementById('to-location');
+    const modeSelect = document.getElementById('route-mode');
+    
+    const fromCoords = JSON.parse(fromSelect.value);
+    const toCoords = JSON.parse(toSelect.value);
+    const mode = modeSelect.value;
+    
+    if (fromCoords && toCoords) {
+        createRoute(fromCoords, toCoords, mode);
+    }
+});
+
+document.getElementById('clear-route').addEventListener('click', clearRoute);
+
+// Add CSS for routing
+const routingStyle = document.createElement('style');
+routingStyle.textContent = `
+    .route-marker {
+        background: transparent;
+        border: none;
+    }
+    .route-marker-icon {
+        background-color: #3388ff;
+        color: white;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .route-instructions {
+        margin-top: 20px;
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        background: #f5f5f5;
+        border-radius: 4px;
+    }
+    .route-summary {
+        margin-bottom: 15px;
+        padding: 10px;
+        background: #e3f2fd;
+        border-radius: 4px;
+    }
+    .route-instructions ol {
+        padding-left: 20px;
+    }
+    .route-instructions li {
+        margin: 5px 0;
+        padding: 5px;
+        border-bottom: 1px solid #ddd;
+    }
+    .location-select, .route-mode-select {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    .clear-route-button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+    .clear-route-button:hover {
+        background-color: #d32f2f;
+    }
+`;
+document.head.appendChild(routingStyle);
+
+// Initialize location dropdowns
+populateLocationDropdowns();
+
+
 
 

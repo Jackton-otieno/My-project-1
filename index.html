@@ -20,6 +20,7 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="FloorPlan.css">
     
     <!-- Search functionality -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
@@ -33,7 +34,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="header-text" style="padding-left: 20px;">
-                    <h1>Chiromo Campus Map</h1>
+                    <h1>Chiromo Campus Map</h1> 
                 </div>
 
                 <!-- Map View Buttons -->
@@ -132,6 +133,10 @@
                             <input type="checkbox" id="shops" data-layer="shops">
                             <label for="shops">Shops & Services</label>
                         </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="chill-spots" data-layer="chill-spots">
+                            <label for="chill-spots">Students Chill Spots</label>
+                        </div>
                     </div>
                 </div>
 
@@ -148,6 +153,16 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="category-group">
+                    <h2 onclick="toggleDropdown('safety-dropdown')">Safety and Security <span class="dropdown-icon">▼</span></h2>
+                    <div id="safety-dropdown" class="dropdown-content">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="emergency" data-layer="emergency">
+                            <label for="emergency">Emergency Assembly Points</label>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="route-direction">
@@ -155,14 +170,27 @@
                 <form id="route-form">
                     <div class="form-group">
                         <label for="from-location">From:</label>
-                        <input type="text" id="from-location" placeholder="Enter starting point">
+                        <select id="from-location" class="location-select">
+                            <option value="">Select starting point</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="to-location">To:</label>
-                        <input type="text" id="to-location" placeholder="Enter destination">
+                        <select id="to-location" class="location-select">
+                            <option value="">Select destination</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="route-mode">Mode:</label>
+                        <select id="route-mode" class="route-mode-select">
+                            <option value="walking">Walking</option>
+                            <option value="driving">Driving</option>
+                        </select>
                     </div>
                     <button type="submit" class="route-button">Get Directions</button>
+                    <button type="button" id="clear-route" class="clear-route-button">Clear Route</button>
                 </form>
+                <div id="route-instructions" class="route-instructions"></div>
             </div>
 
             
@@ -174,6 +202,9 @@
             <div class="map-controls">
                 <button class="map-control-button" id="resetMapBtn" style="background-color: skyblue;">
                     <i class="fas fa-home"></i>
+                </button>
+                <button class="map-control-button" id="gpsTrackBtn" style="background-color: skyblue;">
+                    <i class="fas fa-location-arrow"></i>
                 </button>
                 <button class="map-control-button" id="printMapBtn" style="background-color: skyblue;">
                     <i class="fas fa-print"></i>
@@ -200,6 +231,10 @@
     <!-- Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    
+    <!-- Leaflet Routing Machine -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
     
     <!-- Custom JavaScript -->
     <script type="module" src="map.js"></script>

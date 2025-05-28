@@ -335,5 +335,76 @@ export const locations = [
         coordinates: [-1.2708147337710354, 36.80703355622502],
         category: "transport",
         description: "Main bus station"
+    },
+
+    // Chill Spots
+    {
+        name: "Chiromo Campus Jevanjee Gardens",
+        coordinates: [-1.2737874788615111, 36.80518652971248],
+        category: "chill-spots",
+        description: "A peaceful garden area for students to relax and study"
+    },
+    {
+        name: "Chiromo Campus Gardens 1",
+        coordinates: [-1.2739275939358305, 36.80622258225885],
+        category: "chill-spots",
+        description: "Scenic garden area with benches for student relaxation"
+    },
+    {
+        name: "Chiromo Campus Garden 2",
+        coordinates: [-1.2734352863275953, 36.80640295894718],
+        category: "chill-spots",
+        description: "Quiet garden space for students to unwind"
+    },
+    {
+        name: "Chiromo Campus Garden 3",
+        coordinates: [-1.2728676493430469, 36.8072924758588],
+        category: "chill-spots",
+        description: "Beautiful garden area perfect for study breaks"
+    },
+
+    // Emergency Assembly Points
+    {
+        name: "Assembly Point 1",
+        coordinates: [-1.2737829382272736, 36.807296300003415],
+        category: "emergency",
+        description: "Primary emergency assembly point"
+    },
+    {
+        name: "Assembly Point 2",
+        coordinates: [-1.2743129492513017, 36.80764299370576],
+        category: "emergency",
+        description: "Secondary emergency assembly point"
+    },
+    {
+        name: "Assembly Point 3",
+        coordinates: [-1.2745228297839082, 36.80572247583749],
+        category: "emergency",
+        description: "Emergency assembly point near main entrance"
+    },
+    {
+        name: "Assembly Point 4",
+        coordinates: [-1.2745228297839082, 36.80572247583749],
+        category: "emergency",
+        description: "Emergency assembly point near academic block"
+    },
+    {
+        name: "Assembly Point 5",
+        coordinates: [-1.2729139863894325, 36.80592738860604],
+        category: "emergency",
+        description: "Emergency assembly point near student center"
+    },
+    {
+        name: "Assembly Point 6",
+        coordinates: [-1.2729871211514643, 36.80735699969825],
+        category: "emergency",
+        description: "Emergency assembly point near sports complex"
+    },
+
+    {
+        name: "Assembly Point 7",
+        coordinates: [-1.2736891995598745, 36.80508879588571],
+        category: "emergency",
+        description: "Emergency assembly point near sports complex"
     }
 ]; 
