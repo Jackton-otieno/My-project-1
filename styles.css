@@ -875,3 +875,303 @@ body {
 .building-popup .leaflet-popup-content {
     margin: 10px;
 }
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 280px;
+    }
+
+    .sidebar {
+        width: 100%;
+        max-width: var(--sidebar-width);
+        top: 0;
+        height: 100%;
+        padding-top: 60px;
+    }
+
+    .main-header {
+        padding: 10px;
+        height: auto;
+        min-height: 60px;
+    }
+
+    .header-content {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .header-text {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .header-text h1 {
+        font-size: 1.2rem;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .view-buttons {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .view-button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .header-actions {
+        gap: 8px;
+    }
+
+    .action-button {
+        padding: 8px;
+        font-size: 1rem;
+    }
+
+    .search-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 12px 40px 12px 15px;
+    }
+
+    .search-button {
+        padding: 12px;
+    }
+
+    .category-group h2 {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+
+    .checkbox-item {
+        padding: 12px 15px;
+    }
+
+    .checkbox-item label {
+        font-size: 0.95rem;
+    }
+
+    .route-direction {
+        padding: 15px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .route-button,
+    .clear-route-button {
+        padding: 12px;
+        font-size: 1rem;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* Improve map controls for touch */
+    .leaflet-control-zoom a {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 20px;
+    }
+
+    .leaflet-control-layers {
+        padding: 10px;
+    }
+
+    .leaflet-control-layers-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Make popups more mobile-friendly */
+    .leaflet-popup-content-wrapper {
+        padding: 12px;
+    }
+
+    .leaflet-popup-content {
+        margin: 10px;
+        font-size: 14px;
+    }
+
+    .building-popup img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Improve touch targets for location markers */
+    .leaflet-marker-icon {
+        width: 32px !important;
+        height: 32px !important;
+        margin-left: -16px !important;
+        margin-top: -16px !important;
+    }
+}
+
+/* Additional styles for very small screens */
+@media (max-width: 480px) {
+    .header-text h1 {
+        font-size: 1.1rem;
+    }
+
+    .view-button span {
+        display: none;
+    }
+
+    .view-button {
+        padding: 8px;
+    }
+
+    .view-button i {
+        margin: 0;
+    }
+
+    .action-button {
+        padding: 6px;
+    }
+
+    .sidebar {
+        padding: 60px 10px 10px 10px;
+    }
+}
+
+/* GPS Accuracy Visualization Styles */
+.user-location-marker {
+    position: relative;
+}
+
+.user-location-icon {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-location-icon i {
+    color: #2196F3;
+    font-size: 20px;
+    z-index: 2;
+    background: white;
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.accuracy-circle {
+    position: absolute;
+    border: 2px solid rgba(33, 150, 243, 0.3);
+    border-radius: 50%;
+    background: rgba(33, 150, 243, 0.1);
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.accuracy-text {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.accuracy-status {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 1000;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#gpsTrackBtn.warning .accuracy-circle {
+    border-color: rgba(255, 68, 68, 0.3);
+    background: rgba(255, 68, 68, 0.1);
+}
+
+#gpsTrackBtn.caution .accuracy-circle {
+    border-color: rgba(255, 170, 0, 0.3);
+    background: rgba(255, 170, 0, 0.1);
+}
+
+#gpsTrackBtn.loading {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* GPS Status Messages */
+.gps-status {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 14px;
+    z-index: 9999;
+    text-align: center;
+    max-width: 90%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.3s ease-out;
+}
+
+.gps-status.loading {
+    background: rgba(33, 150, 243, 0.9);
+    animation: pulse 2s infinite;
+}
+
+.gps-status.warning {
+    background: rgba(255, 170, 0, 0.9);
+}
+
+.gps-status.error {
+    background: rgba(255, 68, 68, 0.9);
+}
+
+@keyframes slideDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(33, 150, 243, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
+    }
+}

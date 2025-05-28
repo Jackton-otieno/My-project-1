@@ -279,7 +279,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4457\nEmail: qejani.residences@uon.ac.ke',
         description: 'Qejani Student Residences is a modern accommodation facility designed to provide comfortable and conducive living spaces for students. The facility features a combination of single and shared rooms, each equipped with essential furnishings and study areas. Common amenities include high-speed internet connectivity, 24/7 security surveillance, and dedicated study zones. The residence is strategically located within walking distance to academic buildings and campus facilities.\n\nFacilities:\n- Individual and Shared Accommodation Units\n- High-Speed Internet Access\n- 24/7 Security System\n- Common Study Areas\n- Recreational Spaces\n- Laundry Facilities\n- CCTV Surveillance',
         rooms: 'Total Capacity: 200 Students\nSingle Rooms: 80 Units\nShared Rooms: 120 Units\nCommon Areas: 4\nStudy Rooms: 3',
-        image: 'images\Amity University Campus with Prominent Content.jpeg'
+        image: 'images/qejani-karen.57721f1b.jpg'
     },
     'qwetu-student-residences': {
         name: 'Qwetu Student Residences',
@@ -287,7 +287,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4458\nEmail: qwetu.residences@uon.ac.ke',
         description: 'Qwetu Student Residences represents premium student housing with contemporary design and comprehensive amenities. The facility offers a mix of studio apartments and shared units, all fully furnished to international standards. Residents benefit from high-speed WiFi connectivity, modern fitness facilities, dedicated study spaces, and recreational areas. The residence features advanced security systems including card access control and comprehensive CCTV surveillance.\n\nFacilities:\n- Premium Studio Apartments\n- Shared Accommodation Units\n- Modern Fitness Center\n- Dedicated Study Areas\n- Recreational Facilities\n- High-Speed WiFi Network\n- Advanced Security Systems',
         rooms: 'Total Capacity: 300 Students\nStudio Apartments: 150 Units\nShared Units: 150 Units\nStudy Rooms: 6\nRecreational Areas: 3',
-        image: 'http'
+        image: 'images/qejani-karen.57721f1b.jpg'
     },
     'chiromo-hostel-block-a': {
         name: 'Chiromo Hostel Block A',
@@ -295,7 +295,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4459\nEmail: hostel.a@uon.ac.ke',
         description: 'Chiromo Hostel Block A provides traditional student accommodation with a focus on community living and academic support. The facility features shared rooms with comfortable furnishings, communal study areas, and well-equipped kitchens. Regular maintenance and cleaning services ensure a hygienic living environment. The hostel is conveniently located near campus amenities and academic buildings.\n\nFacilities:\n- Shared Accommodation Units\n- Communal Study Areas\n- Shared Kitchen Facilities\n- Laundry Services\n- Regular Maintenance\n- Security Services\n- Common Room',
         rooms: 'Total Capacity: 150 Students\nDouble Rooms: 100 Units\nTriple Rooms: 50 Units\nStudy Areas: 3\nKitchen Facilities: 2',
-        image: 'https://example.com/hostel-block-a.jpg'
+        image: 'images/Hostel.jpg'
     },
     'chiromo-hostel-block-b': {
         name: 'Chiromo Hostel Block B',
@@ -303,7 +303,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4460\nEmail: hostel.b@uon.ac.ke',
         description: 'Chiromo Hostel Block B offers a balanced accommodation solution with a mix of single and shared rooms. The facility includes dedicated study spaces, common rooms for social interaction, and shared kitchen facilities. Regular maintenance and security services ensure a safe and comfortable living environment. The hostel is situated near campus recreational facilities and academic buildings.\n\nFacilities:\n- Mixed Accommodation Options\n- Dedicated Study Spaces\n- Common Social Areas\n- Shared Kitchen Facilities\n- Recreational Zones\n- Security Services\n- Maintenance Support',
         rooms: 'Total Capacity: 160 Students\nSingle Rooms: 60 Units\nShared Rooms: 100 Units\nCommon Areas: 4\nStudy Spaces: 3',
-        image: 'https://example.com/hostel-block-b.jpg'
+        image: 'images/Hostel.jpg'
     },
     'chiromo-hostel-block-c': {
         name: 'Chiromo Hostel Block C',
@@ -311,7 +311,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4461\nEmail: hostel.c@uon.ac.ke',
         description: 'Chiromo Hostel Block C features modern student accommodation with recently renovated facilities. The residence provides dedicated study spaces, comprehensive WiFi coverage, and secure access systems. Its strategic location near campus dining facilities offers convenient access to meals. The facility maintains high standards of cleanliness and security through regular maintenance and surveillance.\n\nFacilities:\n- Modern Accommodation Units\n- Dedicated Study Areas\n- WiFi Coverage\n- Secure Access Systems\n- Proximity to Dining\n- Regular Maintenance\n- Security Services',
         rooms: 'Total Capacity: 140 Students\nDouble Rooms: 90 Units\nTriple Rooms: 50 Units\nStudy Rooms: 3\nCommon Areas: 2',
-        image: 'https://example.com/hostel-block-c.jpg'
+        image: 'images/Hostel.jpg'
     },
 
     // Laboratories
@@ -329,7 +329,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4464\nEmail: anatomy.lab@uon.ac.ke',
         description: 'Advanced human anatomy research facility featuring state-of-the-art equipment for anatomical studies. Includes specialized dissection rooms, digital imaging systems, 3D visualization tools, microscopy stations, and specimen storage facilities. Equipped with modern teaching aids and virtual anatomy resources for enhanced learning.',
         rooms: 'Lab Numbers: 201-405',
-        image: 'https://example.com/anatomy-lab.jpg'
+        image: 'images/image 27.jpg'
     },
     'nairobi-surgical-skills-center': {
         name: 'Nairobi Surgical Skills Center',
@@ -337,7 +337,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4465\nEmail: surgical.center@uon.ac.ke',
         description: 'Cutting-edge surgical training facility featuring high-fidelity simulation labs and practice operating rooms. Equipped with laparoscopic training systems, surgical simulators, advanced medical imaging equipment, and specialized training tools. Includes debriefing rooms, skills assessment areas, and modern surgical equipment for comprehensive medical training.',
         rooms: 'Training Rooms: 301-405',
-        image: 'https://example.com/surgical-center.jpg'
+        image: 'images/image 36.jpg'
     },
     'histology-lab': {
         name: 'Histology Lab',
@@ -345,7 +345,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4466\nEmail: histology.lab@uon.ac.ke',
         description: 'Specialized laboratory for tissue research and microscopic anatomy studies. Features high-powered microscopes, tissue processing equipment, and dedicated research spaces.',
         rooms: 'Lab Numbers: 401-405',
-        image: 'https://example.com/histology-lab.jpg'
+        image: 'images/image 21.jpg'
     },
     'biochemistry-lab': {
         name: 'Biochemistry Laboratory',
@@ -353,7 +353,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4475\nEmail: biochem.lab@uon.ac.ke',
         description: 'Advanced biochemistry research facility equipped with molecular biology equipment, spectrophotometers, and specialized areas for enzyme kinetics and protein analysis.',
         rooms: 'Lab Numbers: 501-605',
-        image: 'https://example.com/biochemistry-lab.jpg'
+        image: 'images/image 9.jpg'
     },
     'microbiology-lab': {
         name: 'Microbiology Laboratory',
@@ -361,7 +361,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4476\nEmail: micro.lab@uon.ac.ke',
         description: 'Comprehensive microbiology facility with sterile workspaces, incubators, and advanced microscopy equipment. Includes specialized areas for bacterial culture and viral research.',
         rooms: 'Lab Numbers: 601-705',
-        image: 'https://example.com/microbiology-lab.jpg'
+        image: 'images/image 1.jpg'
     },
 
     // Dining Facilities
@@ -387,7 +387,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4468\nEmail: connect.coffee@uon.ac.ke',
         description: 'Modern coffee shop serving premium coffee, tea, and light refreshments. Features comfortable seating and free WiFi, perfect for studying or casual meetings.\n\nOpening Hours:\nMonday to Friday: 7:30 AM - 8:00 PM\nSaturday: 8:00 AM - 5:00 PM\nSunday: 9:00 AM - 3:00 PM',
         rooms: 'Seating Capacity: 50\nStudy Tables: 8\nLounge Area: 1',
-        image: 'https://example.com/connect-coffee.jpg'
+        image: 'images/connectcoffes.jpg'
     },
     'arziki-restaurant': {
         name: 'Arziki Restaurant',
@@ -451,7 +451,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4481\nEmail: jirani.shop@uon.ac.ke',
         description: 'Convenient campus store offering everyday essentials, snacks, beverages, and basic stationery. Stocks student supplies and personal care items.\n\nOpening Hours:\nMonday to Friday: 7:00 AM - 9:00 PM\nSaturday: 8:00 AM - 6:00 PM\nSunday: 9:00 AM - 3:00 PM',
         rooms: 'Shop Area: 1\nStorage Room: 1',
-        image: 'https://example.com/jirani-shop.jpg'
+        image: 'images/Onusscafe.jpg'
     },
     'noor-photocopy': {
         name: 'Noor Photocopy',
@@ -459,7 +459,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4482\nEmail: noor.copy@uon.ac.ke',
         description: 'Professional printing and photocopying service center. Offers printing, scanning, binding, and lamination services. Specializes in academic document preparation.\n\nOpening Hours:\nMonday to Friday: 8:00 AM - 8:00 PM\nSaturday: 9:00 AM - 5:00 PM\nSunday: Closed',
         rooms: 'Service Counter: 1\nPrinting Area: 1\nBinding Station: 1',
-        image: 'https://example.com/noor-photocopy.jpg'
+        image: 'images/Onusscafe.jpg'
     },
     'onuss-cyber': {
         name: 'ONUSS Cyber Cafe',
@@ -467,7 +467,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4483\nEmail: onuss.cyber@uon.ac.ke',
         description: 'Modern cyber café providing computer and internet services. Features high-speed internet, printing facilities, and technical support. Offers document processing and online research assistance.\n\nOpening Hours:\nMonday to Friday: 8:00 AM - 9:00 PM\nSaturday: 9:00 AM - 6:00 PM\nSunday: Closed',
         rooms: 'Computer Stations: 30\nPrinting Area: 1\nTechnical Support Desk: 1',
-        image: 'https://example.com/onuss-cyber.jpg'
+        image: 'images/Onusscafe.jpg'
     },
 
     // Additional Dining Facilities
@@ -493,7 +493,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4478\nEmail: spot.pub@uon.ac.ke',
         description: 'Campus pub offering beverages and light snacks. Features entertainment area and outdoor seating.\n\nOpening Hours:\nMonday to Friday: 4:00 PM - 11:00 PM\nSaturday: 2:00 PM - 11:00 PM\nSunday: Closed',
         rooms: 'Indoor Seating: 50\nOutdoor Seating: 30\nBar Area: 1',
-        image: 'https://example.com/spot-pub.jpg'
+        image: 'images/mess.jpg'
     },
     'uon-chiromo-mess': {
         name: 'UON Chiromo Mess',
@@ -501,7 +501,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4479\nEmail: chiromo.mess@uon.ac.ke',
         description: 'Main student dining hall serving breakfast, lunch, and dinner. Offers a variety of local and international dishes.\n\nOpening Hours:\nMonday to Friday: 7:00 AM - 8:00 PM\nSaturday: 8:00 AM - 6:00 PM\nSunday: 9:00 AM - 3:00 PM',
         rooms: 'Seating Capacity: 500\nFood Service Area: 1\nKitchen: 1',
-        image: 'https://example.com/chiromo-mess.jpg'
+        image: 'images/mess.jpg'
     },
     'uon-smocha-restaurant': {
         name: 'UON SMOCHA RESTAURANT',
@@ -509,7 +509,7 @@ export const buildingInfo = {
         contact: 'Phone: +254 20 444 4480\nEmail: smocha.restaurant@uon.ac.ke',
         description: 'Full-service restaurant offering a diverse menu of local and international cuisine. Features daily specials and catering services.\n\nOpening Hours:\nMonday to Friday: 8:00 AM - 9:00 PM\nSaturday: 9:00 AM - 7:00 PM\nSunday: 10:00 AM - 4:00 PM',
         rooms: 'Seating Capacity: 150\nPrivate Dining Room: 1\nOutdoor Terrace: 1',
-        image: 'https://example.com/smocha-restaurant.jpg'
+        image: 'images/smocha.jpeg'
     },
 
     // Additional Parking Areas
@@ -602,6 +602,64 @@ export const buildingInfo = {
         description: 'Beautiful garden area perfect for study breaks. Features well-maintained green spaces, comfortable seating, and a relaxing atmosphere. The garden provides an excellent environment for outdoor activities, casual meetings, or peaceful relaxation.',
         rooms: 'Outdoor Space\nSeating Areas: Multiple\nRecreational Spaces: Available',
         image: 'images/image 2.jpg'
+    },
+
+    // Emergency Assembly Points
+    'assembly-point-1': {
+        name: 'Assembly Point 1',
+        department: 'Emergency Services',
+        contact: 'Emergency Contact: 911',
+        description: 'Primary emergency assembly point for campus-wide evacuations. This designated area provides a safe gathering space during emergencies, with clear visibility and easy access for emergency responders.',
+        rooms: 'Open Space\nCapacity: 500+ people',
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
+    },
+    'assembly-point-2': {
+        name: 'Assembly Point 2',
+        department: 'Emergency Services',
+        contact: 'Emergency Contact: 911',
+        description: 'Secondary emergency assembly point strategically located for quick access during campus evacuations. Features clear signage and adequate space for emergency response coordination.',
+        rooms: 'Open Space\nCapacity: 500+ people',
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
+    },
+    'assembly-point-3': {
+        name: 'Assembly Point 3',
+        department: 'Emergency Services',
+        contact: 'Emergency Contact: 911',
+        description: 'Emergency assembly point near main entrance, providing a safe gathering area during campus evacuations. Features clear visibility and easy access for emergency services.',
+        rooms: 'Open Space\nCapacity: 500+ people',
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
+    },
+    'assembly-point-4': {
+        name: 'Assembly Point 4',
+        department: 'Emergency Services',
+        contact: 'Emergency Contact: 911',
+        description: 'Emergency assembly point near academic block, designed for quick evacuation and safe gathering during emergencies. Features clear signage and adequate space for emergency response.',
+        rooms: 'Open Space\nCapacity: 500+ people',
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
+    },
+    'assembly-point-5': {
+        name: 'Assembly Point 5',
+        department: 'Emergency Services',
+        contact: 'Emergency Contact: 911',
+        description: 'Emergency assembly point near student center, providing a safe gathering space during campus evacuations. Features clear visibility and easy access for emergency responders.',
+        rooms: 'Open Space\nCapacity: 500+ people',
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
+    },
+    'assembly-point-6': {
+        name: 'Assembly Point 6',
+        department: 'Emergency Services',
+        contact: 'Emergency Contact: 911',
+        description: 'Emergency assembly point near sports complex, strategically located for quick access during campus evacuations. Features clear signage and adequate space for emergency response.',
+        rooms: 'Open Space\nCapacity: 500+ people',
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
+    },
+    'assembly-point-7': {
+        name: 'Assembly Point 7',
+        department: 'Emergency Services',
+        contact: 'Emergency Contact: 911',
+        description: 'Emergency assembly point near sports complex, providing a safe gathering area during campus evacuations. Features clear visibility and easy access for emergency services.',
+        rooms: 'Open Space\nCapacity: 500+ people',
+        image: 'images/Amity University Campus with Prominent Content.jpeg'
     }
 };
 
@@ -1257,60 +1315,167 @@ function createDetailedPopup(location) {
         const popupContent = document.createElement('div');
         popupContent.className = 'popup-content';
         
-        // Create image if available
+        // Create image container with improved styling
         if (info.image) {
-            const imageDiv = document.createElement('div');
-            imageDiv.style.marginBottom = '10px';
+            const imageContainer = document.createElement('div');
+            imageContainer.className = 'popup-image-container';
+            imageContainer.style.cssText = `
+                margin: -10px -10px 10px -10px;
+                position: relative;
+                width: calc(100% + 20px);
+                height: 300px;
+                overflow: hidden;
+                border-radius: 8px 8px 0 0;
+                background: #f5f5f5;
+            `;
+            
             const img = document.createElement('img');
             img.src = info.image;
             img.alt = info.name;
-            img.style.width = '100%';
-            img.style.maxHeight = '150px';
-            img.style.objectFit = 'cover';
-            img.style.borderRadius = '4px';
-            imageDiv.appendChild(img);
-            popupContent.appendChild(imageDiv);
+            img.style.cssText = `
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                transition: transform 0.3s ease;
+            `;
+            
+            // Add hover effect
+            img.addEventListener('mouseover', () => {
+                img.style.transform = 'scale(1.05)';
+            });
+            img.addEventListener('mouseout', () => {
+                img.style.transform = 'scale(1)';
+            });
+            
+            // Add loading state
+            img.onload = () => {
+                imageContainer.style.background = 'none';
+            };
+            img.onerror = () => {
+                imageContainer.innerHTML = `
+                    <div style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        color: #666;
+                        font-size: 14px;
+                        text-align: center;
+                        padding: 20px;
+                    ">
+                        <i class="fas fa-image" style="font-size: 24px; margin-right: 10px;"></i>
+                        Image not available
+                    </div>
+                `;
+            };
+            
+            imageContainer.appendChild(img);
+            popupContent.appendChild(imageContainer);
         }
 
-        // Create title
+        // Create content container with padding
+        const contentContainer = document.createElement('div');
+        contentContainer.style.cssText = `
+            padding: 15px;
+            background: white;
+        `;
+
+        // Create title with improved styling
         const title = document.createElement('h3');
-        title.style.margin = '0 0 10px 0';
-        title.style.color = '#1a237e';
+        title.style.cssText = `
+            margin: 0 0 15px 0;
+            color: #1a237e;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.3;
+        `;
         title.textContent = info.name;
-        popupContent.appendChild(title);
+        contentContainer.appendChild(title);
 
-        // Create department info
-        const department = document.createElement('p');
-        department.style.margin = '5px 0';
-        department.innerHTML = `<strong>Department:</strong> ${info.department}`;
-        popupContent.appendChild(department);
+        // Create department info with icon
+        const department = document.createElement('div');
+        department.style.cssText = `
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            color: #333;
+            font-size: 14px;
+        `;
+        department.innerHTML = `
+            <i class="fas fa-building" style="color: #1a237e; margin-right: 8px; width: 16px;"></i>
+            <span><strong>Department:</strong> ${info.department}</span>
+        `;
+        contentContainer.appendChild(department);
 
-        // Create description
-        const description = document.createElement('p');
-        description.style.margin = '5px 0';
-        description.innerHTML = `<strong>Description:</strong> ${info.description}`;
-        popupContent.appendChild(description);
+        // Create description with improved formatting
+        const description = document.createElement('div');
+        description.style.cssText = `
+            margin: 15px 0;
+            color: #444;
+            font-size: 14px;
+            line-height: 1.5;
+        `;
+        description.innerHTML = `
+            <div style="display: flex; align-items: flex-start;">
+                <i class="fas fa-info-circle" style="color: #1a237e; margin-right: 8px; margin-top: 3px; width: 16px;"></i>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Description:</strong>
+                    ${info.description.replace(/\n/g, '<br>')}
+                </div>
+            </div>
+        `;
+        contentContainer.appendChild(description);
 
-        // Create contact info
-        const contact = document.createElement('p');
-        contact.style.margin = '5px 0';
-        contact.innerHTML = `<strong>Contact:</strong><br>${info.contact}`;
-        popupContent.appendChild(contact);
+        // Create contact info with icon
+        const contact = document.createElement('div');
+        contact.style.cssText = `
+            margin: 15px 0;
+            color: #444;
+            font-size: 14px;
+        `;
+        contact.innerHTML = `
+            <div style="display: flex; align-items: flex-start;">
+                <i class="fas fa-phone" style="color: #1a237e; margin-right: 8px; margin-top: 3px; width: 16px;"></i>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Contact:</strong>
+                    ${info.contact.replace(/\n/g, '<br>')}
+                </div>
+            </div>
+        `;
+        contentContainer.appendChild(contact);
 
-        // Create rooms info if available
+        // Create rooms info with icon if available
         if (info.rooms) {
-            const rooms = document.createElement('p');
-            rooms.style.margin = '5px 0';
-            rooms.innerHTML = `<strong>Rooms:</strong> ${info.rooms}`;
-            popupContent.appendChild(rooms);
+            const rooms = document.createElement('div');
+            rooms.style.cssText = `
+                margin: 15px 0;
+                color: #444;
+                font-size: 14px;
+            `;
+            rooms.innerHTML = `
+                <div style="display: flex; align-items: flex-start;">
+                    <i class="fas fa-door-open" style="color: #1a237e; margin-right: 8px; margin-top: 3px; width: 16px;"></i>
+                    <div>
+                        <strong style="display: block; margin-bottom: 5px;">Rooms:</strong>
+                        ${info.rooms.replace(/\n/g, '<br>')}
+                    </div>
+                </div>
+            `;
+            contentContainer.appendChild(rooms);
         }
+
+        // Add content container to popup
+        popupContent.appendChild(contentContainer);
 
         // Only create indoor navigation button for department locations
         if (location.category === 'departments') {
-            // Create indoor navigation button
             const buttonContainer = document.createElement('div');
-            buttonContainer.style.marginTop = '10px';
-            buttonContainer.style.textAlign = 'center';
+            buttonContainer.style.cssText = `
+                margin-top: 15px;
+                text-align: center;
+                padding: 0 15px 15px;
+            `;
             
             const indoorNavButton = document.createElement('button');
             indoorNavButton.className = 'indoor-nav-btn';
@@ -1319,15 +1484,24 @@ function createDetailedPopup(location) {
                 background-color: #4CAF50;
                 color: white;
                 border: none;
-                padding: 8px 16px;
-                border-radius: 4px;
+                padding: 10px 20px;
+                border-radius: 6px;
                 cursor: pointer;
                 font-size: 14px;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                width: 100%;
             `;
             
-            // Add click event listener
+            indoorNavButton.addEventListener('mouseover', () => {
+                indoorNavButton.style.backgroundColor = '#45a049';
+            });
+            indoorNavButton.addEventListener('mouseout', () => {
+                indoorNavButton.style.backgroundColor = '#4CAF50';
+            });
+            
             indoorNavButton.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent popup from closing
+                e.stopPropagation();
                 showIndoorNavigation(buildingId);
             });
             
@@ -1336,24 +1510,37 @@ function createDetailedPopup(location) {
         }
 
         return popupContent;
-    } else {
-        // Fallback to basic information if detailed info is not available
-        const basicContent = document.createElement('div');
-        basicContent.className = 'popup-content';
-        
-        const title = document.createElement('h3');
-        title.style.margin = '0 0 10px 0';
-        title.style.color = '#1a237e';
-        title.textContent = location.name;
-        basicContent.appendChild(title);
-        
-        const description = document.createElement('p');
-        description.style.margin = '5px 0';
-        description.textContent = location.description || 'No description available.';
-        basicContent.appendChild(description);
-        
-        return basicContent;
     }
+    
+    // Fallback to basic information if detailed info is not available
+    const basicContent = document.createElement('div');
+    basicContent.className = 'popup-content';
+    basicContent.style.cssText = `
+        padding: 15px;
+        background: white;
+    `;
+    
+    const title = document.createElement('h3');
+    title.style.cssText = `
+        margin: 0 0 10px 0;
+        color: #1a237e;
+        font-size: 16px;
+        font-weight: 600;
+    `;
+    title.textContent = location.name;
+    basicContent.appendChild(title);
+    
+    const description = document.createElement('p');
+    description.style.cssText = `
+        margin: 0;
+        color: #444;
+        font-size: 14px;
+        line-height: 1.5;
+    `;
+    description.textContent = location.description || 'No description available.';
+    basicContent.appendChild(description);
+    
+    return basicContent;
 }
 
 // Function to show indoor navigation
@@ -1703,8 +1890,10 @@ locations.forEach(location => {
         
         const popupContent = createDetailedPopup(location);
         marker.bindPopup(popupContent, {
-            maxWidth: 400, // Increased max width for better readability
-            className: 'custom-popup' // Added custom class for styling
+            maxWidth: 500,  // Increased from 400
+            minWidth: 400,  // Added minimum width
+            className: 'custom-popup',
+            maxHeight: 600  // Added maximum height
         });
         
         // Add marker to the appropriate layer
@@ -2115,61 +2304,271 @@ map.addControl(legend);
 let userMarker = null;
 let watchId = null;
 let isTracking = false;
+let positionHistory = []; // Store recent positions for averaging
+const MAX_POSITION_HISTORY = 5; // Number of positions to average
+const MIN_ACCURACY_THRESHOLD = 20; // Minimum accuracy in meters to consider position valid
+const POSITION_UPDATE_INTERVAL = 1000; // Update interval in milliseconds
+const INITIAL_TIMEOUT = 30000; // 30 seconds for initial fix
+const WATCH_TIMEOUT = 15000; // 15 seconds for subsequent updates
+let gpsTimeoutId = null; // For tracking timeout
 
-// Function to update user location
-function updateUserLocation(position) {
-    const { latitude, longitude } = position.coords;
-    const userLocation = [latitude, longitude];
+// Function to show GPS status message
+function showGPSStatus(message, type = 'info') {
+    const gpsButton = document.getElementById('gpsTrackBtn');
+    const statusDiv = document.createElement('div');
+    statusDiv.className = `gps-status ${type}`;
+    statusDiv.textContent = message;
     
+    // Remove any existing status
+    const existingStatus = document.querySelector('.gps-status');
+    if (existingStatus) {
+        existingStatus.remove();
+    }
+    
+    document.body.appendChild(statusDiv);
+    
+    // Auto-remove after 5 seconds unless it's a loading message
+    if (type !== 'loading') {
+        setTimeout(() => statusDiv.remove(), 5000);
+    }
+    
+    return statusDiv;
+}
+
+// Function to calculate average position from history
+function calculateAveragePosition(positions) {
+    if (positions.length === 0) return null;
+    
+    let sumLat = 0;
+    let sumLng = 0;
+    let totalWeight = 0;
+    
+    positions.forEach(pos => {
+        const weight = 1 / (pos.accuracy || 1); // Weight by accuracy (more accurate positions have higher weight)
+        sumLat += pos.latitude * weight;
+        sumLng += pos.longitude * weight;
+        totalWeight += weight;
+    });
+    
+    return {
+        latitude: sumLat / totalWeight,
+        longitude: sumLng / totalWeight,
+        accuracy: Math.min(...positions.map(p => p.accuracy)) // Use best accuracy
+    };
+}
+
+// Function to update user location with improved accuracy handling
+function updateUserLocation(position) {
+    const { latitude, longitude, accuracy } = position.coords;
+    
+    // Add position to history
+    positionHistory.push({
+        latitude,
+        longitude,
+        accuracy,
+        timestamp: Date.now()
+    });
+    
+    // Keep only recent positions
+    if (positionHistory.length > MAX_POSITION_HISTORY) {
+        positionHistory.shift();
+    }
+    
+    // Calculate average position
+    const avgPosition = calculateAveragePosition(positionHistory);
+    if (!avgPosition) return;
+    
+    const userLocation = [avgPosition.latitude, avgPosition.longitude];
+    const currentAccuracy = avgPosition.accuracy;
+    
+    // Update accuracy indicator
+    const gpsButton = document.getElementById('gpsTrackBtn');
+    const accuracyStatus = document.createElement('div');
+    accuracyStatus.className = 'accuracy-status';
+    
+    if (currentAccuracy > 100) {
+        gpsButton.classList.add('warning');
+        accuracyStatus.textContent = `Low accuracy: ${Math.round(currentAccuracy)}m`;
+        accuracyStatus.style.color = '#ff4444';
+    } else if (currentAccuracy > 50) {
+        gpsButton.classList.add('caution');
+        accuracyStatus.textContent = `Medium accuracy: ${Math.round(currentAccuracy)}m`;
+        accuracyStatus.style.color = '#ffaa00';
+    } else {
+        gpsButton.classList.remove('warning', 'caution');
+        accuracyStatus.textContent = `High accuracy: ${Math.round(currentAccuracy)}m`;
+        accuracyStatus.style.color = '#44aa44';
+    }
+    
+    // Update marker with improved styling
     if (!userMarker) {
-        // Create a new marker if it doesn't exist
         userMarker = L.marker(userLocation, {
             icon: L.divIcon({
                 className: 'user-location-marker',
-                html: '<div class="user-location-icon"><i class="fas fa-user"></i></div>',
+                html: `
+                    <div class="user-location-icon">
+                        <i class="fas fa-user"></i>
+                        <div class="accuracy-circle" style="width: ${Math.min(currentAccuracy * 2, 100)}px; height: ${Math.min(currentAccuracy * 2, 100)}px;"></div>
+                        <div class="accuracy-text">${Math.round(currentAccuracy)}m</div>
+                    </div>
+                `,
                 iconSize: [30, 30],
                 iconAnchor: [15, 15]
             })
         }).addTo(map);
     } else {
-        // Update existing marker position
-        userMarker.setLatLng(userLocation);
+        // Smoothly update marker position
+        const currentLatLng = userMarker.getLatLng();
+        const newLatLng = L.latLng(userLocation);
+        const distance = currentLatLng.distanceTo(newLatLng);
+        
+        // Only update if movement is significant or accuracy is good
+        if (distance > currentAccuracy || currentAccuracy < MIN_ACCURACY_THRESHOLD) {
+            userMarker.setLatLng(userLocation);
+            const icon = userMarker.getIcon();
+            icon.options.html = `
+                <div class="user-location-icon">
+                    <i class="fas fa-user"></i>
+                    <div class="accuracy-circle" style="width: ${Math.min(currentAccuracy * 2, 100)}px; height: ${Math.min(currentAccuracy * 2, 100)}px;"></div>
+                    <div class="accuracy-text">${Math.round(currentAccuracy)}m</div>
+                </div>
+            `;
+            userMarker.setIcon(icon);
+        }
     }
     
-    // Center map on user location
-    map.setView(userLocation, 19);
+    // Center map if accuracy is good enough
+    if (currentAccuracy < MIN_ACCURACY_THRESHOLD) {
+        map.setView(userLocation, 19, {
+            animate: true,
+            duration: 1
+        });
+    }
 }
 
-// Function to start GPS tracking
+// Function to start GPS tracking with improved settings
 function startGPSTracking() {
+    console.log('Starting GPS tracking with high accuracy settings...');
     if (!isTracking) {
         if (navigator.geolocation) {
-            // Get initial position
-            navigator.geolocation.getCurrentPosition(updateUserLocation, (error) => {
-                console.error('Error getting location:', error);
-                alert('Unable to get your location. Please ensure location services are enabled.');
-            });
+            const gpsButton = document.getElementById('gpsTrackBtn');
+            gpsButton.classList.add('loading');
+            gpsButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            gpsButton.title = 'Getting high accuracy location...';
             
-            // Start watching position
-            watchId = navigator.geolocation.watchPosition(
-                updateUserLocation,
+            // Show initial status
+            const statusDiv = showGPSStatus('Getting GPS signal... This may take a moment.', 'loading');
+            
+            // Clear position history
+            positionHistory = [];
+            
+            // Set timeout for initial position
+            gpsTimeoutId = setTimeout(() => {
+                if (isTracking) return; // Don't show timeout if we got a position
+                showGPSStatus('GPS signal taking longer than usual. Try moving to an open area.', 'warning');
+                gpsButton.classList.remove('loading');
+                gpsButton.innerHTML = '<i class="fas fa-location-arrow"></i>';
+                gpsButton.title = 'GPS signal weak - Click to try again';
+            }, INITIAL_TIMEOUT);
+            
+            // Get initial position with high accuracy settings
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    clearTimeout(gpsTimeoutId);
+                    console.log('Initial high accuracy position received:', position);
+                    statusDiv.remove();
+                    updateUserLocation(position);
+                    gpsButton.classList.remove('loading');
+                    gpsButton.innerHTML = '<i class="fas fa-location-arrow"></i>';
+                    
+                    // Start watching position with improved settings
+                    watchId = navigator.geolocation.watchPosition(
+                        (position) => {
+                            console.log('Position update received:', position);
+                            updateUserLocation(position);
+                        },
+                        (error) => {
+                            console.error('Watch position error:', error);
+                            handleGPSError(error);
+                        },
+                        {
+                            enableHighAccuracy: true, // Request highest accuracy
+                            timeout: WATCH_TIMEOUT, // Longer timeout for subsequent updates
+                            maximumAge: 5000, // Allow slightly older positions (5 seconds)
+                            desiredAccuracy: 10 // Request 10m accuracy if possible
+                        }
+                    );
+                    
+                    isTracking = true;
+                    gpsButton.classList.add('active');
+                    gpsButton.title = 'GPS Tracking Active - High Accuracy Mode';
+                },
                 (error) => {
-                    console.error('Error watching location:', error);
-                    alert('Error tracking location. Please check your location settings.');
+                    clearTimeout(gpsTimeoutId);
+                    console.error('Initial position error:', error);
+                    statusDiv.remove();
+                    handleGPSError(error);
                 },
                 {
                     enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
+                    timeout: INITIAL_TIMEOUT, // Longer timeout for initial fix
+                    maximumAge: 0, // Don't use cached positions for initial fix
+                    desiredAccuracy: 10
                 }
             );
-            
-            isTracking = true;
-            document.getElementById('gpsTrackBtn').classList.add('active');
         } else {
-            alert('Geolocation is not supported by your browser.');
+            console.error('Geolocation is not supported');
+            alert('Geolocation is not supported by your browser. Please try using a different browser or device.');
         }
+    } else {
+        console.log('GPS tracking already active');
     }
+}
+
+// Improved GPS error handling
+function handleGPSError(error) {
+    const gpsButton = document.getElementById('gpsTrackBtn');
+    gpsButton.classList.remove('loading');
+    gpsButton.classList.add('error');
+    gpsButton.innerHTML = '<i class="fas fa-location-arrow"></i>';
+    
+    let errorMessage = 'Unable to get your location. ';
+    let detailedMessage = '';
+    let type = 'error';
+    
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            errorMessage += 'Location access denied.';
+            detailedMessage = 'Please enable location services in your browser settings and try again.';
+            break;
+        case error.POSITION_UNAVAILABLE:
+            errorMessage += 'Location information unavailable.';
+            detailedMessage = 'Try moving to an area with better GPS signal or wait a few moments before trying again.';
+            type = 'warning';
+            break;
+        case error.TIMEOUT:
+            errorMessage += 'Location request timed out.';
+            detailedMessage = 'Please check your GPS signal and try again. Try moving to an open area.';
+            type = 'warning';
+            break;
+        default:
+            errorMessage += 'An unknown error occurred.';
+            detailedMessage = 'Please try again or restart your device.';
+    }
+    
+    console.error('GPS Error:', error);
+    
+    // Show more detailed error message
+    showGPSStatus(`${errorMessage} ${detailedMessage}`, type);
+    
+    if (isTracking) {
+        stopGPSTracking();
+    }
+    
+    // Remove error class after 3 seconds
+    setTimeout(() => {
+        gpsButton.classList.remove('error');
+    }, 3000);
 }
 
 // Function to stop GPS tracking
@@ -2188,8 +2587,9 @@ function stopGPSTracking() {
     }
 }
 
-// Add event listener for GPS tracking button
+// Add event listener for GPS tracking button with logging
 document.getElementById('gpsTrackBtn').addEventListener('click', () => {
+    console.log('GPS button clicked, current tracking state:', isTracking);
     if (!isTracking) {
         startGPSTracking();
     } else {
@@ -2205,6 +2605,7 @@ style.textContent = `
         border: none;
     }
     .user-location-icon {
+        position: relative;
         background-color: #4CAF50;
         color: white;
         border-radius: 50%;
@@ -2217,10 +2618,61 @@ style.textContent = `
     }
     .user-location-icon i {
         font-size: 16px;
+        z-index: 2;
+    }
+    .accuracy-circle {
+        position: absolute;
+        border: 2px solid #4CAF50;
+        border-radius: 50%;
+        background-color: rgba(76, 175, 80, 0.2);
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        transition: all 0.3s ease;
+    }
+    .accuracy-text {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-size: 10px;
+        white-space: nowrap;
     }
     .map-control-button.active {
         background-color: #4CAF50 !important;
         color: white;
+    }
+    .map-control-button.loading {
+        background-color: #FFA500 !important;
+        color: white;
+    }
+    .map-control-button.error {
+        background-color: #FF0000 !important;
+        color: white;
+    }
+    .map-control-button.warning {
+        background-color: #FFA500 !important;
+        color: white;
+    }
+    .map-control-button[title] {
+        position: relative;
+    }
+    .map-control-button[title]:hover::after {
+        content: attr(title);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        z-index: 1000;
     }
 `;
 document.head.appendChild(style);
@@ -2421,6 +2873,4 @@ document.head.appendChild(routingStyle);
 // Initialize location dropdowns
 populateLocationDropdowns();
 
-
-
-
+// Theme and User Preferences Management

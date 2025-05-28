@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Interactive map of University of Nairobi Chiromo Campus">
     <meta name="theme-color" content="#8C1515">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>UoN Chiromo Campus Map</title>
     
     <!-- Fonts -->
@@ -30,48 +32,47 @@
         <!-- Header -->
         <header class="main-header">
             <div class="header-content">
-                <button class="menu-toggle" id="menuToggle">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
-                <div class="header-text" style="padding-left: 20px;">
+                <div class="header-text">
                     <h1>Chiromo Campus Map</h1> 
                 </div>
 
                 <!-- Map View Buttons -->
-                <div class="view-buttons">
-                    <button class="view-button active" data-view="campus">
+                <div class="view-buttons" role="group" aria-label="Map view options">
+                    <button class="view-button active" data-view="campus" aria-label="Campus Map View">
                         <i class="fas fa-map"></i>
                         <span>Campus Map</span>
                     </button>
-                    <button class="view-button" data-view="satellite">
+                    <button class="view-button" data-view="satellite" aria-label="Satellite View">
                         <i class="fas fa-satellite"></i>
                         <span>Satellite</span>
                     </button>
                 </div>
 
                 <div class="header-actions">
-                    <button class="action-button" id="printBtn">
+                    <button class="action-button" id="printBtn" aria-label="Print map">
                         <i class="fas fa-print"></i>
                     </button>
-                    <button class="action-button" id="shareBtn">
+                    <button class="action-button" id="shareBtn" aria-label="Share map">
                         <i class="fas fa-share-alt"></i>
                     </button>
-                    <button class="action-button" id="helpBtn">
+                    <button class="action-button" id="helpBtn" aria-label="Get help">
                         <i class="fas fa-question"></i>
                     </button>
                 </div>
-                
             </div>
         </header>
 
         <!-- Sidebar -->
-        <div class="sidebar active">
+        <div class="sidebar active" role="navigation" aria-label="Map controls and search">
             <div class="search-container">
-                <input type="text" id="search-input" class="search-input" placeholder="Search locations...">
-                <button class="search-button">
+                <input type="text" id="search-input" class="search-input" placeholder="Search locations..." aria-label="Search locations">
+                <button class="search-button" aria-label="Search">
                     <i class="fas fa-search"></i>
                 </button>
-                <div id="search-results" class="search-results"></div>
+                <div id="search-results" class="search-results" role="listbox" aria-label="Search results"></div>
             </div>
 
             <!-- Sidebar Header -->
@@ -167,22 +168,22 @@
 
             <div class="route-direction">
                 <h2>Route Directions</h2>
-                <form id="route-form">
+                <form id="route-form" role="search">
                     <div class="form-group">
                         <label for="from-location">From:</label>
-                        <select id="from-location" class="location-select">
+                        <select id="from-location" class="location-select" aria-label="Select starting point">
                             <option value="">Select starting point</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="to-location">To:</label>
-                        <select id="to-location" class="location-select">
+                        <select id="to-location" class="location-select" aria-label="Select destination">
                             <option value="">Select destination</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="route-mode">Mode:</label>
-                        <select id="route-mode" class="route-mode-select">
+                        <select id="route-mode" class="route-mode-select" aria-label="Select travel mode">
                             <option value="walking">Walking</option>
                             <option value="driving">Driving</option>
                         </select>
@@ -190,7 +191,7 @@
                     <button type="submit" class="route-button">Get Directions</button>
                     <button type="button" id="clear-route" class="clear-route-button">Clear Route</button>
                 </form>
-                <div id="route-instructions" class="route-instructions"></div>
+                <div id="route-instructions" class="route-instructions" role="region" aria-label="Route instructions"></div>
             </div>
 
             
